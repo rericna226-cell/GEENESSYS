@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon (2)/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon (2)/favicon-96x96.png" />
+  <link rel="shortcut icon" href="favicon (2)/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon (2)/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon (2)/site.webmanifest" />
+
+  <title>GEENESSYS - Autonomía verificable para sistemas críticos</title>
+
+  <meta
+    name="description"
+    content="GEENESSYS es una plataforma de autonomía verificable para sistemas físicos, digitales y empresariales. Motores deterministas, coordinación multiagente y ejecución auditada."
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --dark: #05070d;
+      --dark-2: #0b111d;
+      --navy: #121b2c;
+      --navy-2: #111a2a;
+      --blue: #001dff;
+      --blue-2: #173dff;
+      --ice: #d9ecff;
+      --ice-2: #a8d4ff;
+      --muted: #aebbd0;
+      --light: #dce9f5;
+      --black: #030712;
+      --line: rgba(255,255,255,.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--ice);
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .tech {
+      font-family: Orbitron, sans-serif;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    p {
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: linear-gradient(180deg, rgba(11,17,29,.9), rgba(11,17,29,.5));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .top-logo {
+      width: 190px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(219,239,255,.22));
+    }
+
+    .top-logo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .brand-name {
+      font-family: Orbitron, sans-serif;
+      font-weight: 700;
+      letter-spacing: .12em;
+      font-size: 16px;
+      color: var(--ice);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex: 1;
+      padding: 0 26px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(237,246,255,.92);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-item-btn {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(237,246,255,.92);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+      white-space: nowrap;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-item-btn:hover,
+    .nav-item-btn[aria-expanded="true"] {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-item-btn:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .nav-search {
+      position: relative;
+      width: min(380px, 44vw);
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      overflow: hidden;
+    }
+
+    .nav-search input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: rgba(237,246,255,.92);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 0 16px;
+    }
+
+    .nav-search input::placeholder {
+      color: rgba(237,246,255,.55);
+      font-weight: 600;
+    }
+
+    .mega-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 45;
+    }
+
+    .mega-menu {
+      position: fixed;
+      top: 90px;
+      left: 12px;
+      right: 12px;
+      z-index: 65;
+    }
+
+    .mega-backdrop[hidden],
+    .mega-menu[hidden] {
+      display: none;
+    }
+
+    .mega-inner {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.95);
+      backdrop-filter: blur(18px);
+      padding: 18px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .mega-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mega-col {
+      border-radius: 22px;
+      border: 0;
+      background: transparent;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .mega-title {
+      font-family: Orbitron, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(168,212,255,.85);
+      margin-bottom: 2px;
+    }
+
+    .mega-spacer {
+      height: 10px;
+    }
+
+    .mega-primary {
+      display: block;
+      font-family: Orbitron, sans-serif;
+      letter-spacing: .04em;
+      font-weight: 500;
+      font-size: 20px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.95);
+    }
+
+    .mega-primary:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+    }
+
+    .mega-link {
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 0;
+      background: transparent;
+      color: rgba(237,246,255,.92);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .mega-link:hover {
+      background: rgba(255,255,255,.06);
+    }
+
+    .side-index {
+      position: fixed;
+      top: 118px;
+      left: 28px;
+      z-index: 30;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      width: 208px;
+      padding: 12px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.92);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 110px rgba(0,0,0,.45);
+    }
+
+    .side-index-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .side-index-title {
+      font-family: Orbitron, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(168,212,255,.85);
+    }
+
+    .side-index-toggle {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(237,246,255,.92);
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .side-index-toggle:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .side-index-toggle:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .side-index-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .side-index-links a {
+      display: inline-flex;
+      align-items: center;
+      height: 40px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: rgba(237,246,255,.9);
+      font-weight: 700;
+      font-size: 14px;
+      transition: background .15s ease, transform .15s ease;
+    }
+
+    .side-index-links a:hover {
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .side-index-links a:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .side-index.collapsed {
+      width: 58px;
+      padding: 10px;
+    }
+
+    .side-index.collapsed .side-index-title,
+    .side-index.collapsed .side-index-links {
+      display: none;
+    }
+
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-drop-btn {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(237,246,255,.92);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+      white-space: nowrap;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-drop-btn:hover,
+    .nav-drop-btn[aria-expanded="true"] {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-drop-btn:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .nav-drop-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      min-width: 280px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.95);
+      backdrop-filter: blur(18px);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+      z-index: 80;
+    }
+
+    .nav-drop-menu[hidden] {
+      display: none;
+    }
+
+    .nav-drop-menu a {
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.92);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nav-drop-menu a:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+      transform: none;
+    }
+
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: 190px;
+      justify-content: flex-end;
+    }
+
+    .nav-cta {
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: rgba(237,246,255,.92);
+      font-weight: 800;
+      font-size: 14px;
+      border: 0;
+      box-shadow: none;
+      backdrop-filter: blur(10px);
+      transition: background .15s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .lang {
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(255,255,255,.06);
+      color: rgba(237,246,255,.92);
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .lang:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .lang:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .lang-caret {
+      font-size: 12px;
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+
+    .lang-menu {
+      position: fixed;
+      top: 90px;
+      right: 48px;
+      z-index: 80;
+      min-width: 180px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.95);
+      backdrop-filter: blur(18px);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .lang-menu[hidden] {
+      display: none;
+    }
+
+    .lang-menu a {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 0;
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.92);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .lang-menu a:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .lang-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      z-index: 75;
+    }
+
+    .lang-backdrop[hidden] {
+      display: none;
+    }
+
+    .nav-toggle {
+      height: 46px;
+      width: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(237,246,255,.92);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      transition: background .15s ease;
+    }
+
+    .nav-toggle:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .nav-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(237,246,255,.92);
+      display: block;
+    }
+
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 60;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 90px;
+      left: 12px;
+      right: 12px;
+      z-index: 70;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.92);
+      backdrop-filter: blur(18px);
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .mobile-menu a {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.92);
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .mobile-backdrop[hidden],
+    .mobile-menu[hidden] {
+      display: none;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    .section {
+      position: relative;
+      padding: 140px 7vw;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .center {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 70px;
+    }
+
+    .eyebrow {
+      color: var(--ice-2);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 13px;
+      margin-bottom: 22px;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(58px, 9vw, 140px);
+      line-height: .82;
+      color: #030917;
+      text-shadow: 0 0 20px rgba(220,240,255,.45);
+    }
+
+    h1 span {
+      display: block;
+      color: var(--ice);
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4.5vw, 70px);
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+
+    h3 {
+      font-size: clamp(21px, 2vw, 30px);
+      line-height: 1.15;
+    }
+
+    .buttons {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 15px 28px;
+      border: 1px solid rgba(255,255,255,.75);
+      font-weight: 800;
+      transition: .25s ease;
+      backdrop-filter: blur(10px);
+      min-height: 52px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn.primary {
+      background: var(--ice);
+      color: #06101f;
+      border-color: var(--ice);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,.08);
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.07), transparent 25%),
+        linear-gradient(180deg, #060910 0%, #0c1422 52%, #05070d 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 7px 7px;
+      opacity: .55;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0 38px,
+          rgba(0,0,100,.75) 38px 54px,
+          transparent 54px 72px
+        );
+      mask-image: radial-gradient(circle at center, #000 0 45%, transparent 72%);
+      opacity: .65;
+      animation: pulseGrid 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGrid {
+      from { opacity: .45; transform: scale(1); }
+      to { opacity: .75; transform: scale(1.03); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      max-width: 1120px;
+      padding-top: 80px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .brand-mark {
+      width: min(620px, 78vw);
+      display: block;
+      filter: drop-shadow(0 0 30px rgba(219,239,255,.5));
+    }
+
+    .brand-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-tag {
+      margin-top: 28px;
+      font-family: Orbitron, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 18px;
+      color: white;
+    }
+
+    .hero-copy {
+      max-width: 820px;
+      margin: 28px auto 0;
+      color: #eaf5ff;
+      font-size: 18px;
+    }
+
+    .dark-section {
+      background:
+        radial-gradient(circle at 10% 80%, rgba(168,212,255,.1), transparent 25%),
+        linear-gradient(180deg, #05070d 0%, #121b2c 100%);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 34px;
+      margin-top: 42px;
+    }
+
+    .feature {
+      border-top: 2px solid rgba(255,255,255,.75);
+      padding-top: 26px;
+    }
+
+    .feature h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .solution {
+      background: #0f1726;
+      text-align: center;
+    }
+
+
+    .solution .container {
+      max-width: 980px;
+      padding-bottom: 0;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 42px;
+    }
+
+    .pill {
+      background: rgba(3,7,18,.65);
+      border: 0;
+      padding: 20px;
+      border-radius: 18px;
+      color: #f0f8ff;
+      backdrop-filter: blur(12px);
+      font-weight: 800;
+    }
+
+    .cards-section {
+      background: linear-gradient(180deg, #060910, #111a2a);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      min-height: 360px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+        #111a2a;
+      padding: 42px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 30px 90px rgba(0,0,0,.25);
+    }
+
+    .card.card-link {
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .card.card-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 40px 110px rgba(0,0,0,.35);
+    }
+
+    .card.card-link:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 4px;
+    }
+
+    .num {
+      font-family: Orbitron, sans-serif;
+      color: var(--ice-2);
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .card-logo {
+      width: min(320px, 100%);
+      height: 132px;
+      margin-bottom: 18px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .card-logo img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+    }
+
+    .card-logo.core {
+      width: min(260px, 100%);
+      gap: 8px;
+      align-items: center;
+    }
+
+    .card-logo.core img {
+      max-width: 76%;
+    }
+
+    .card-logo.core .card-version {
+      width: 76%;
+      text-align: center;
+    }
+
+    .card-logo.op-ai {
+      width: min(340px, 100%);
+    }
+
+    .card-version {
+      color: #fff;
+      font-family: Orbitron, sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: .22em;
+      line-height: 1;
+    }
+
+    .card > p {
+      text-align: left;
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--ice-2);
+      margin-right: 8px;
+    }
+
+    .research-note {
+      margin-top: 22px;
+      padding: 30px;
+      border-radius: 0;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+        #0d1524;
+      display: grid;
+      grid-template-columns: minmax(220px, 320px) 1fr;
+      gap: 30px;
+      align-items: center;
+      text-align: left;
+      box-shadow: 0 24px 70px rgba(0,0,0,.24);
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      cursor: pointer;
+    }
+
+    .research-note:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.16);
+      box-shadow: 0 30px 90px rgba(0,0,0,.3);
+    }
+
+    .research-note:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 4px;
+    }
+
+    .research-note-logo {
+      width: min(250px, 100%);
+    }
+
+    .research-note-logo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .research-note-copy {
+      max-width: 680px;
+    }
+
+    .research-note-kicker {
+      margin-bottom: 12px;
+      color: var(--ice-2);
+      font-family: Orbitron, sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .research-note-copy p {
+      color: var(--ice);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .research-note-copy strong {
+      color: #fff;
+    }
+
+    .light-section {
+      background: var(--light);
+      color: #07101d;
+    }
+
+    .light-section p {
+      color: #263245;
+    }
+
+    .light-section .eyebrow {
+      color: #263245;
+    }
+
+    .light-section h2,
+    .light-section h3 {
+      color: #07101d;
+    }
+
+    .industry-list {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .industry-tabs {
+      display: grid;
+      gap: 12px;
+    }
+
+    .industry {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(7,16,29,.14);
+      background: rgba(255,255,255,.42);
+      color: #07101d;
+      font-family: Inter, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+      text-align: left;
+    }
+
+    .industry:hover {
+      transform: translateY(-2px);
+    }
+
+    .industry.active {
+      background: white;
+      border-color: rgba(7,16,29,.25);
+      box-shadow: 0 24px 80px rgba(0,0,0,.12);
+    }
+
+    .ind-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: transparent;
+      border: 0;
+      flex: 0 0 auto;
+    }
+
+    .ind-icon img {
+      display: block;
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .industry-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid rgba(7,16,29,.12);
+      background: #10192a;
+      min-height: 420px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: var(--ice);
+    }
+
+    .panel-visual {
+      position: absolute;
+      inset: 0;
+      opacity: .95;
+      --industry-image: none;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(0,29,255,.45), transparent 55%),
+        radial-gradient(circle at 85% 45%, rgba(168,212,255,.18), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01)),
+        var(--industry-image);
+      background-size: auto, auto, auto, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .panel-visual[data-visual="drones"] {
+      --industry-image: url("VISUAL/drones%20e%20inspeccion.jpg");
+    }
+
+    .panel-visual[data-visual="logistica"] {
+      --industry-image: url("VISUAL/logistica%20y%20almacenes.jpg");
+    }
+
+    .panel-visual[data-visual="robotica"] {
+      --industry-image: url("VISUAL/manufactura%20y%20robotica.png");
+    }
+
+    .panel-visual[data-visual="drones"],
+    .panel-visual[data-visual="logistica"],
+    .panel-visual[data-visual="robotica"] {
+      background-image:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
+        var(--industry-image);
+      background-size: auto, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .panel-visual[data-visual="empresa"] {
+      --industry-image: url("VISUAL/operaciones%20empresariales.png");
+      background-image:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+        var(--industry-image);
+      background-size: auto, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .panel-visual[data-visual="empresa"]::after {
+      display: none;
+    }
+
+    .panel-visual[data-visual="drones"]::after,
+    .panel-visual[data-visual="logistica"]::after,
+    .panel-visual[data-visual="robotica"]::after {
+      display: none;
+    }
+
+    .panel-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(168,212,255,.12) 0 1px,
+          rgba(168,212,255,0) 1px 46px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(168,212,255,.08) 0 1px,
+          rgba(168,212,255,0) 1px 46px
+        );
+      opacity: .35;
+      mix-blend-mode: screen;
+    }
+
+    .panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 72%);
+    }
+
+    .panel-overlay[data-visual="research"] {
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.88) 76%),
+        url("VISUAL/investigacion%20I%2BD_1.png");
+      background-size: auto, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .panel-overlay[data-visual="drones"],
+    .panel-overlay[data-visual="logistica"],
+    .panel-overlay[data-visual="robotica"] {
+      background: linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.9) 72%);
+    }
+
+    .industry-panel h3 {
+      position: relative;
+      font-size: 30px;
+      margin-bottom: 14px;
+      color: var(--ice);
+    }
+
+    .industry-panel p {
+      position: relative;
+      color: rgba(174,187,208,.95);
+      max-width: 62ch;
+    }
+
+    .integration-process {
+      background: var(--light);
+      color: #07101d;
+    }
+
+    .integration-process .eyebrow {
+      color: #17306b;
+    }
+
+    .integration-process p {
+      color: #263245;
+    }
+
+    .integration-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .integration-intro {
+      max-width: 860px;
+    }
+
+    .integration-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 34px;
+      margin-top: 54px;
+    }
+
+    .integration-step {
+      padding-top: 24px;
+      border-top: 2px solid rgba(7,16,29,.16);
+    }
+
+    .integration-step h3 {
+      font-size: 24px;
+      margin-bottom: 14px;
+      color: #07101d;
+    }
+
+    .cta {
+      min-height: 760px;
+      background: rgba(0, 29, 255, .5);
+      display: flex;
+      align-items: center;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 55%;
+      height: 58%;
+      background:
+        linear-gradient(90deg, rgba(0,255,255,.25), rgba(0,0,0,.35)),
+        repeating-linear-gradient(0deg, rgba(0,29,255,.95) 0 3px, transparent 3px 22px),
+        repeating-linear-gradient(90deg, rgba(180,230,255,.8) 0 2px, transparent 2px 26px);
+      filter: saturate(1.4);
+      opacity: .95;
+    }
+
+    .cta-box {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 0;
+      align-items: stretch;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0,0,0,.45);
+    }
+
+    .cta-copy {
+      padding: 42px 34px;
+      background: #0c1422;
+    }
+
+    .cta-form-card {
+      background: var(--light);
+      color: #07101d;
+      padding: 48px;
+      text-align: left;
+      border-left: 1px solid rgba(255,255,255,.08);
+    }
+
+    .cta-copy h2,
+    .cta-form-card h2 {
+      font-size: clamp(34px, 4vw, 58px);
+    }
+
+    .cta-copy h2 {
+      color: var(--ice);
+      margin-bottom: 18px;
+    }
+
+    .cta-copy p {
+      color: rgba(237,246,255,.76);
+      max-width: 42ch;
+      margin-bottom: 18px;
+    }
+
+    .cta-form-card h2,
+    .cta-form-card h3 {
+      color: #07101d;
+    }
+
+    .cta-form-card p {
+      color: #263245;
+    }
+
+    .cta-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .cta-points div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(237,246,255,.88);
+      font-size: 15px;
+    }
+
+    .cta-points span {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--ice-2);
+      box-shadow: 0 0 18px rgba(168,212,255,.55);
+      flex: 0 0 auto;
+    }
+
+    .contact-form {
+      margin-top: 26px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 800;
+      color: #07101d;
+      letter-spacing: .02em;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,.14);
+      background: rgba(255,255,255,.85);
+      color: #07101d;
+      padding: 14px;
+      font-family: Inter, sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(0,29,255,.45);
+      box-shadow: 0 0 0 4px rgba(0,29,255,.08);
+    }
+
+    .privacy {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #263245;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .privacy input {
+      margin-top: 4px;
+    }
+
+    .privacy a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 800;
+    }
+
+    .submit {
+      margin-top: 8px;
+      min-height: 52px;
+      border: none;
+      border-radius: 999px;
+      background: #07101d;
+      color: #edf6ff;
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .submit:hover {
+      transform: translateY(-2px);
+      background: #001dff;
+    }
+
+    footer {
+      background: linear-gradient(180deg, #060910, #111a2a);
+      color: #edf6ff;
+      padding: 80px 7vw 50px;
+    }
+
+    .footer-grid {
+      max-width: 1320px;
+      margin: auto;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 50px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    footer p,
+    footer a {
+      color: rgba(237,246,255,.82);
+      font-size: 17px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand {
+      font-family: Orbitron, sans-serif;
+      font-size: 42px;
+      line-height: .9;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .footer-mark {
+      width: 220px;
+      display: block;
+    }
+
+    .footer-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .footer-title {
+      color: #edf6ff;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 1100px) {
+      .nav-links,
+      .nav-cta,
+      .nav-search {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .side-index {
+        display: none;
+      }
+
+      .two-col,
+      .industry-list,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid,
+      .pill-grid,
+      .integration-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-form-card {
+        border-left: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header {
+        height: 78px;
+        padding: 0 20px;
+      }
+
+      .top-logo {
+        width: 154px;
+      }
+
+      .nav-actions {
+        width: 154px;
+      }
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .mobile-menu {
+        top: 78px;
+      }
+
+      .mega-menu {
+        top: 78px;
+      }
+
+      .lang-menu {
+        top: 78px;
+        right: 20px;
+      }
+
+      .section {
+        padding: 92px 24px;
+      }
+
+      .research-note {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      .research-note-logo {
+        width: min(200px, 100%);
+      }
+
+      .research-note-copy p {
+        font-size: 16px;
+      }
+
+      .hero {
+        min-height: 92vh;
+      }
+
+      .brand {
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .brand-mark {
+        width: min(420px, 78vw);
+      }
+
+      h1 {
+        font-size: clamp(48px, 18vw, 78px);
+      }
+
+      h2 {
+        font-size: clamp(30px, 10vw, 46px);
+      }
+
+      .hero-copy {
+        font-size: 16px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-copy,
+      .cta-form-card {
+        padding: 30px 22px;
+      }
+
+      .footer-brand {
+        font-size: 30px;
+      }
+
+      .footer-mark {
+        width: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a class="nav-logo" href="index.html" aria-label="GEENESSYS Home">
+      <span class="top-logo" aria-hidden="true">
+        <img src="VISUAL/geenessys_logo_blanco.png" alt="">
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegación principal">
+      <button class="nav-item-btn mega-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="megaMenu">
+        Explorar
+      </button>
+      <a href="#contact">Contacto</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
+        <span>ES</span>
+        <span class="lang-caret" aria-hidden="true">⌄</span>
+      </button>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="lang-backdrop" hidden></div>
+
+  <div class="lang-menu" id="langMenu" role="menu" hidden>
+    <a role="menuitem" href="index.html" lang="es">ES - Español</a>
+    <a role="menuitem" href="index-en.html" lang="en">EN - English</a>
+  </div>
+
+  <div class="mega-backdrop" hidden></div>
+
+  <nav class="mega-menu" id="megaMenu" hidden aria-label="Explorar">
+    <div class="mega-inner">
+      <div class="mega-grid">
+        <div class="mega-col">
+          <div class="mega-title">Proyectos</div>
+          <a class="mega-link" href="index.html">GEENESSYS Platform</a>
+          <a class="mega-link" href="core.html">GEENESSYS 7.1.1.</a>
+          <a class="mega-link" href="drones.html">GEENESSYS Drones</a>
+          <a class="mega-link" href="op-ai.html">GEENESSYS OP AI</a>
+          <a class="mega-link" href="dee-universe.html">DEE Universe</a>
+        </div>
+
+        <div class="mega-col">
+          <div class="mega-title">Tecnología</div>
+          <a class="mega-link" href="technology.html">Arquitectura</a>
+          <a class="mega-link" href="technology-vision.html">Technology Vision</a>
+          <div class="mega-spacer"></div>
+          <div class="mega-title">Legal</div>
+          <a class="mega-link" href="privacy.html">Aviso de privacidad</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-backdrop" hidden></div>
+
+  <nav class="mobile-menu" hidden aria-label="Menú móvil">
+    <a href="#contact">Contacto</a>
+    <a href="#solutions">Soluciones</a>
+    <a href="#industries">Industrias</a>
+    <a href="#evaluation">Evaluación</a>
+    <a href="core.html">GEENESSYS 7.1.1.</a>
+    <a href="drones.html">GEENESSYS Drones</a>
+    <a href="op-ai.html">GEENESSYS OP AI</a>
+    <a href="dee-universe.html">DEE Universe</a>
+    <a href="technology.html">Arquitectura</a>
+    <a href="technology-vision.html">Technology Vision</a>
+    <a href="privacy.html">Aviso de privacidad</a>
+  </nav>
+
+  <nav class="side-index" aria-label="Índice">
+    <div class="side-index-head">
+      <div class="side-index-title">Índice</div>
+      <button class="side-index-toggle" type="button" aria-expanded="true" aria-controls="sideIndexLinks" aria-label="Ocultar índice">
+        ×
+      </button>
+    </div>
+    <div class="side-index-links" id="sideIndexLinks">
+      <a href="#solutions">Soluciones</a>
+      <a href="#industries">Industrias</a>
+      <a href="#evaluation">Evaluación</a>
+      <a href="#contact">Contacto</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section hero">
+      <div class="hero-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <img src="VISUAL/geenessys_logo_blanco.png" alt="">
+          </div>
+
+          <h1>
+            <span>Platform</span>
+          </h1>
+        </div>
+
+        <div class="hero-tag">Autonomía verificable para sistemas críticos</div>
+
+        <p class="hero-copy">
+          GEENESSYS combina motores deterministas, coordinación multiagente e inteligencia operativa
+          para coordinar drones, robots, rutas y procesos empresariales con baja latencia,
+          trazabilidad y ejecución auditada.
+        </p>
+
+        <div class="buttons">
+          <a class="btn primary" href="#contact">Solicitar evaluación técnica</a>
+          <a class="btn secondary" href="#solutions">Ver soluciones</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="platform" class="section dark-section">
+      <div class="container two-col">
+        <div>
+          <div class="eyebrow">El problema</div>
+          <h2>La autonomía no puede depender de cajas negras.</h2>
+          <p>
+            Los sistemas críticos necesitan decisiones rápidas, trazables y verificables.
+            GEENESSYS separa comprensión, decisión y ejecución para reducir dependencia de modelos opacos,
+            latencia incierta o infraestructura externa.
+          </p>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature">
+            <h3>Decisiones opacas</h3>
+            <p>
+              La operación crítica requiere entender por qué se tomó una decisión,
+              qué datos la activaron y cómo se ejecutó.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3>Latencia incierta</h3>
+            <p>
+              En drones, robots, rutas o procesos automatizados, la respuesta debe ser medible,
+              acotada y verificable.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3>Dependencia externa</h3>
+            <p>
+              Cloud, GPUs, sensores premium o integraciones cerradas pueden limitar el despliegue,
+              el costo y el control operativo.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution">
+      <div class="container">
+        <div class="eyebrow">Qué es GEENESSYS</div>
+
+        <h2>Una plataforma para autonomía física y digital.</h2>
+
+        <p>
+          GEENESSYS es una plataforma modular que utiliza motores especializados para coordinar
+          sistemas físicos, procesos empresariales y decisiones críticas. El lenguaje natural puede
+          ayudar a interpretar el contexto, pero la ejecución se apoya en motores deterministas y auditables.
+        </p>
+
+        <div class="pill-grid">
+          <div class="pill">Percibe señales, contexto y restricciones</div>
+          <div class="pill">Decide con motores especializados</div>
+          <div class="pill">Ejecuta con trazabilidad operativa</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="section cards-section">
+      <div class="container">
+        <div class="center">
+          <div class="eyebrow">Ecosistema</div>
+          <h2>Un ecosistema modular para operar, integrar y escalar.</h2>
+          <p>
+            Una arquitectura común para autonomía física, operación empresarial,
+            coordinación multiagente e investigación avanzada.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <a class="card card-link" href="core.html">
+            <div class="num">01: ENGINE / SDK</div>
+            <div class="card-logo core">
+              <img src="VISUAL/geenessys_logo_blanco.png" alt="GEENESSYS">
+              <div class="card-version">7.1.1.</div>
+            </div>
+            <p>
+              Motor determinista para navegación 3D/4D, coordinación multiagente y decisiones críticas.
+            </p>
+            <ul>
+              <li>Pathfinding 3D/4D</li>
+              <li>Coordinación multiagente</li>
+              <li>SDK integrable</li>
+              <li>Edge / Omni</li>
+            </ul>
+          </a>
+
+          <a class="card card-link" href="drones.html">
+            <div class="num">02: PHYSICAL AUTONOMY</div>
+            <div class="card-logo">
+              <img src="VISUAL/GeenessysDronSinLinea.png" alt="GEENESSYS Drones">
+            </div>
+            <p>
+              Autonomía local para UAV/UGV, inspección, vigilancia, rescate y operación con conectividad limitada.
+            </p>
+            <ul>
+              <li>MAVLink / Pixhawk</li>
+              <li>ArduPilot / PX4</li>
+              <li>Failsafes multicapa</li>
+              <li>Multi-dron</li>
+            </ul>
+          </a>
+
+          <a class="card card-link" href="op-ai.html">
+            <div class="num">03: ENTERPRISE AI</div>
+            <div class="card-logo op-ai">
+              <img src="VISUAL/GeenessysOPAISinLinea.png" alt="GEENESSYS OP AI">
+            </div>
+            <p>
+              Automatización empresarial, análisis semántico, RPA y ejecución auditada de procesos.
+            </p>
+            <ul>
+              <li>RPA validado</li>
+              <li>Análisis documental</li>
+              <li>Automatización operativa</li>
+              <li>Auditoría de ejecución</li>
+            </ul>
+          </a>
+        </div>
+
+        <a class="research-note" href="dee-universe.html">
+          <div class="research-note-logo">
+            <img src="VISUAL/DEEUniverseLOGOBlanco.png" alt="DEE Universe">
+          </div>
+          <div class="research-note-copy">
+            <div class="research-note-kicker">Research</div>
+            <p><strong>GEENESSYS DEE Universe</strong> explora simulación discreta, autómatas celulares 3D y modelos emergentistas para laboratorios, academia e I+D.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="industries" class="section light-section">
+      <div class="container">
+        <div class="eyebrow">Industrias</div>
+
+        <h2>Diseñado para sectores donde el error cuesta.</h2>
+
+        <p>
+          GEENESSYS puede implementarse como piloto técnico, SDK, servidor local o solución personalizada
+          según el caso de uso.
+        </p>
+
+        <div class="industry-list">
+          <div class="industry-tabs">
+            <button class="industry active" type="button" data-title="Drones e inspección"
+              data-copy="Autonomía local para infraestructura, vigilancia, búsqueda y rescate, inspección de líneas, perímetros y operación en campo."
+              data-visual="drones">
+              <span class="ind-icon"><img src="Icons/Droneseinspección.png" alt=""></span>
+              Drones e inspección
+            </button>
+
+            <button class="industry" type="button" data-title="Logística y almacenes"
+              data-copy="Coordinación de rutas, flotas, AGV, inventario inteligente y sistemas operativos en almacenes de alta densidad."
+              data-visual="logistica">
+              <span class="ind-icon"><img src="Icons/Logísticayalmacenes.png" alt=""></span>
+              Logística y almacenes
+            </button>
+
+            <button class="industry" type="button" data-title="Manufactura y robótica"
+              data-copy="Control de procesos físicos, robots, brazos, flujos de producción y decisiones trazables en entornos industriales."
+              data-visual="robotica">
+              <span class="ind-icon"><img src="Icons/Manufacturayrobótica.png" alt=""></span>
+              Manufactura y robótica
+            </button>
+
+            <button class="industry" type="button" data-title="Operaciones empresariales"
+              data-copy="Automatización, análisis documental, RPA validado, ejecución auditada y coordinación de procesos internos."
+              data-visual="empresa">
+              <span class="ind-icon"><img src="Icons/Operacionesempresariales.png" alt=""></span>
+              Operaciones empresariales
+            </button>
+
+            <button class="industry" type="button" data-title="Investigación e I+D"
+              data-copy="Simulación, experimentación, modelos discretos, validación de hipótesis y desarrollo tecnológico conjunto."
+              data-visual="research">
+              <span class="ind-icon"><img src="Icons/InvestigacióneI+D.png" alt=""></span>
+              Investigación e I+D
+            </button>
+          </div>
+
+          <div class="industry-panel">
+            <div class="panel-visual" data-visual="drones"></div>
+            <div class="panel-overlay" data-visual="drones"></div>
+            <h3 id="industry-title">Drones e inspección</h3>
+            <p id="industry-copy">
+              Autonomía local para infraestructura, vigilancia, búsqueda y rescate, inspección de líneas,
+              perímetros y operación en campo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evaluation" class="section integration-process">
+      <div class="container integration-shell">
+        <div class="integration-intro">
+          <div class="eyebrow">Proceso de evaluación</div>
+
+          <h2>Primero entendemos el caso. Después definimos la estructura.</h2>
+
+          <p>
+            GEENESSYS no parte de una modalidad comercial única. Cada conversación inicia evaluando
+            el caso de uso, el entorno operativo, la prioridad estratégica y el nivel de acceso técnico requerido.
+          </p>
+        </div>
+
+        <div class="integration-flow">
+          <article class="integration-step">
+            <h3>Diagnóstico técnico y estratégico</h3>
+            <p>
+              Analizamos caso de uso, restricciones, hardware, entorno operativo,
+              objetivos de rendimiento e integración potencial.
+            </p>
+          </article>
+
+          <article class="integration-step">
+            <h3>Evaluación bajo NDA</h3>
+            <p>
+              Compartimos información técnica de forma progresiva, con mínima divulgación necesaria,
+              trazabilidad documental y control de acceso.
+            </p>
+          </article>
+
+          <article class="integration-step">
+            <h3>Estructura comercial</h3>
+            <p>
+              Definimos si el mejor camino es licencia SDK, piloto, integración tecnológica,
+              desarrollo conjunto, partnership o una estructura híbrida.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section cta">
+      <div class="cta-box">
+        <div class="cta-copy">
+          <div class="eyebrow">Contacto</div>
+
+          <h2>Solicita una evaluación técnica.</h2>
+
+          <p>
+            Cuéntanos qué necesitas automatizar, coordinar o validar. Revisaremos si GEENESSYS
+            puede aplicarse como piloto técnico, SDK, servidor local o integración personalizada.
+          </p>
+
+          <div class="cta-points">
+            <div><span></span> Diagnóstico inicial del caso de uso</div>
+            <div><span></span> Acceso técnico progresivo bajo NDA</div>
+            <div><span></span> Licencia, piloto, integración o partnership</div>
+          </div>
+        </div>
+
+        <div class="cta-form-card">
+          <h2>Evaluación técnica</h2>
+
+          <p>
+            Comparte la información básica del proyecto. El equipo revisará el caso y definirá
+            la mejor ruta de evaluación.
+          </p>
+
+          <form class="contact-form" action="#" method="post">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Nombre completo</label>
+                <input id="name" name="name" type="text" placeholder="Nombre y apellido" required />
+              </div>
+
+              <div class="field">
+                <label for="company">Empresa / institución</label>
+                <input id="company" name="company" type="text" placeholder="Nombre de la empresa" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="email">Correo electrónico</label>
+                <input id="email" name="email" type="email" placeholder="correo@empresa.com" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">Teléfono</label>
+                <input id="phone" name="phone" type="tel" placeholder="+__ ___ ___ ____" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="sector">Sector</label>
+                <select id="sector" name="sector" required>
+                  <option value="">Selecciona un sector</option>
+                  <option>Drones e inspección</option>
+                  <option>Logística y almacenes</option>
+                  <option>Manufactura y robótica</option>
+                  <option>Operaciones empresariales</option>
+                  <option>Energía e infraestructura</option>
+                  <option>Investigación / laboratorio / academia</option>
+                  <option>Gobierno / seguridad pública</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="interest">Interés</label>
+                <select id="interest" name="interest" required>
+                  <option value="">Selecciona tu interés</option>
+                  <option>Evaluación técnica</option>
+                  <option>Piloto controlado</option>
+                  <option>Licencia SDK</option>
+                  <option>Servidor local / on-premise</option>
+                  <option>Integración empresarial</option>
+                  <option>Autonomía para drones / UAV / UGV</option>
+                  <option>Automatización operativa / OP AI</option>
+                  <option>Partnership / inversión</option>
+                  <option>Documentación técnica bajo NDA</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Mensaje</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Comparte tu caso de uso, objetivo de evaluación, etapa del proceso o el tipo de acceso técnico que necesitas."
+                required
+              ></textarea>
+            </div>
+
+            <label class="privacy">
+              <input type="checkbox" name="privacy" required />
+              <span>
+                He leído y acepto el <a href="privacy.html">aviso de privacidad</a> y autorizo
+                el tratamiento de mis datos personales conforme a la LFPDPPP.
+              </span>
+            </label>
+
+            <button class="submit" type="submit">Solicitar evaluación técnica</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="footer-mark" aria-hidden="true">
+            <img src="VISUAL/geenessys_logo_blanco.png" alt="">
+          </span>
+        </div>
+
+        <p>
+          Plataforma de autonomía verificable para sistemas físicos, digitales y empresariales.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">Plataforma</div>
+        <a href="#solutions">Soluciones</a>
+        <a href="#industries">Industrias</a>
+        <a href="#evaluation">Evaluación</a>
+        <a href="#contact">Contacto</a>
+      </div>
+
+      <div>
+        <div class="footer-title">Tecnología</div>
+        <a href="technology.html">Arquitectura</a>
+        <a href="core.html">GEENESSYS 7.1.1.</a>
+        <a href="drones.html">GEENESSYS Drones</a>
+        <a href="op-ai.html">GEENESSYS OP AI</a>
+        <a href="dee-universe.html">DEE Universe</a>
+        <a href="privacy.html">Aviso de privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const backdrop = document.querySelector('.mobile-backdrop');
+    const langToggle = document.getElementById('langToggle');
+    const langMenu = document.getElementById('langMenu');
+    const langBackdrop = document.querySelector('.lang-backdrop');
+    const megaTrigger = document.querySelector('.mega-trigger');
+    const megaMenu = document.getElementById('megaMenu');
+    const megaBackdrop = document.querySelector('.mega-backdrop');
+    const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let megaCloseTimer;
+
+    function closeLangMenu() {
+      if (!langToggle || !langMenu || !langBackdrop) return;
+      langMenu.hidden = true;
+      langBackdrop.hidden = true;
+      langToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openLangMenu() {
+      if (!langToggle || !langMenu || !langBackdrop) return;
+      closeMenu();
+      closeMegaMenu();
+      langMenu.hidden = false;
+      langBackdrop.hidden = false;
+      langToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMegaMenu() {
+      if (!megaTrigger || !megaMenu || !megaBackdrop) return;
+      window.clearTimeout(megaCloseTimer);
+      megaMenu.hidden = true;
+      megaBackdrop.hidden = true;
+      megaTrigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function openMegaMenu() {
+      if (!megaTrigger || !megaMenu || !megaBackdrop) return;
+      window.clearTimeout(megaCloseTimer);
+      closeMenu();
+      megaMenu.hidden = false;
+      megaBackdrop.hidden = false;
+      megaTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function scheduleMegaMenuClose() {
+      if (!supportsHoverMenu.matches) return;
+      window.clearTimeout(megaCloseTimer);
+      megaCloseTimer = window.setTimeout(() => {
+        closeMegaMenu();
+      }, 180);
+    }
+
+    function closeMenu() {
+      document.body.classList.remove('menu-open');
+      mobileMenu.hidden = true;
+      backdrop.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openMenu() {
+      closeMegaMenu();
+      closeLangMenu();
+      document.body.classList.add('menu-open');
+      mobileMenu.hidden = false;
+      backdrop.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.mobile-menu a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    if (langToggle && langMenu && langBackdrop) {
+      langToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeLangMenu() : openLangMenu();
+      });
+
+      langBackdrop.addEventListener('click', closeLangMenu);
+
+      langMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeLangMenu);
+      });
+    }
+
+    if (megaTrigger && megaMenu && megaBackdrop) {
+      megaTrigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = megaTrigger.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeMegaMenu() : openMegaMenu();
+      });
+
+      if (supportsHoverMenu.matches) {
+        megaTrigger.addEventListener('mouseenter', openMegaMenu);
+        megaTrigger.addEventListener('mouseleave', scheduleMegaMenuClose);
+        megaMenu.addEventListener('mouseenter', openMegaMenu);
+        megaMenu.addEventListener('mouseleave', scheduleMegaMenuClose);
+      }
+
+      megaBackdrop.addEventListener('click', closeMegaMenu);
+
+      megaMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMegaMenu);
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+        closeMegaMenu();
+        closeLangMenu();
+      }
+    });
+
+    const sideIndex = document.querySelector('.side-index');
+    const sideIndexToggle = document.querySelector('.side-index-toggle');
+
+    function applySideIndexState(isCollapsed) {
+      if (!sideIndex || !sideIndexToggle) return;
+      sideIndex.classList.toggle('collapsed', isCollapsed);
+      sideIndexToggle.setAttribute('aria-expanded', String(!isCollapsed));
+      sideIndexToggle.setAttribute('aria-label', isCollapsed ? 'Mostrar índice' : 'Ocultar índice');
+      sideIndexToggle.textContent = isCollapsed ? '☰' : '×';
+    }
+
+    if (sideIndex && sideIndexToggle) {
+      const saved = localStorage.getItem('geenessys_side_index_collapsed');
+      applySideIndexState(saved === '1');
+
+      sideIndexToggle.addEventListener('click', () => {
+        const isCollapsed = sideIndex.classList.contains('collapsed');
+        const next = !isCollapsed;
+        localStorage.setItem('geenessys_side_index_collapsed', next ? '1' : '0');
+        applySideIndexState(next);
+      });
+    }
+
+    const industryButtons = document.querySelectorAll('.industry');
+    const industryTitle = document.getElementById('industry-title');
+    const industryCopy = document.getElementById('industry-copy');
+    const panelVisual = document.querySelector('.panel-visual');
+    const panelOverlay = document.querySelector('.panel-overlay');
+
+    industryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        industryButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        industryTitle.textContent = button.dataset.title;
+        industryCopy.textContent = button.dataset.copy;
+        panelVisual.dataset.visual = button.dataset.visual;
+        panelOverlay.dataset.visual = button.dataset.visual;
+      });
+    });
+  </script>
+</body>
+</html>

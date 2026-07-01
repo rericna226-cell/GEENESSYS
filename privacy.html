@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon (2)/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon (2)/favicon-96x96.png" />
+  <link rel="shortcut icon" href="favicon (2)/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon (2)/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon (2)/site.webmanifest" />
+
+  <title>Aviso de Privacidad Integral | OKOZAM IP Core</title>
+
+  <meta
+    name="description"
+    content="Aviso de Privacidad Integral de OKOZAM IP Core, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares en México."
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --dark: #05070d;
+      --dark-2: #0b111d;
+      --navy: #121b2c;
+      --navy-2: #111a2a;
+      --blue: #001dff;
+      --blue-2: #173dff;
+      --ice: #d9ecff;
+      --ice-2: #a8d4ff;
+      --muted: #aebbd0;
+      --light: #dce9f5;
+      --black: #030712;
+      --line: rgba(255,255,255,.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--ice);
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    h1, h2, h3, .tech {
+      font-family: Orbitron, sans-serif;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    p {
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: linear-gradient(180deg, rgba(11,17,29,.9), rgba(11,17,29,.5));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .top-logo {
+      width: 190px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(219,239,255,.22));
+    }
+
+    .top-logo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .brand-name {
+      font-family: Orbitron, sans-serif;
+      font-weight: 700;
+      letter-spacing: .12em;
+      font-size: 16px;
+      color: var(--ice);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex: 1;
+      padding: 0 26px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(237,246,255,.92);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-item-btn,
+    .nav-drop-btn {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(237,246,255,.92);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+      white-space: nowrap;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-item-btn:hover,
+    .nav-item-btn[aria-expanded="true"],
+    .nav-drop-btn:hover,
+    .nav-drop-btn[aria-expanded="true"] {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-item-btn:focus-visible,
+    .nav-drop-btn:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .mega-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 45;
+    }
+
+    .mega-menu {
+      position: fixed;
+      top: 90px;
+      left: 12px;
+      right: 12px;
+      z-index: 65;
+    }
+
+    .mega-backdrop[hidden],
+    .mega-menu[hidden] {
+      display: none;
+    }
+
+    .mega-inner {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.95);
+      backdrop-filter: blur(18px);
+      padding: 18px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .mega-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mega-col {
+      border-radius: 22px;
+      border: 0;
+      background: transparent;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .mega-title {
+      font-family: Orbitron, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(168,212,255,.85);
+      margin-bottom: 2px;
+    }
+
+    .mega-spacer {
+      height: 10px;
+    }
+
+    .mega-primary {
+      display: block;
+      font-family: Orbitron, sans-serif;
+      letter-spacing: .04em;
+      font-weight: 500;
+      font-size: 20px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.95);
+    }
+
+    .mega-primary:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+    }
+
+    .mega-link {
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 0;
+      background: transparent;
+      color: rgba(237,246,255,.92);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .mega-link:hover {
+      background: rgba(255,255,255,.06);
+    }
+
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: 190px;
+      justify-content: flex-end;
+    }
+
+    .nav-cta {
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--ice);
+      color: #06101f;
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid var(--ice);
+    }
+
+    .lang {
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(237,246,255,.92);
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+    }
+
+    .lang:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    .lang:focus-visible {
+      outline: 2px solid rgba(168,212,255,.85);
+      outline-offset: 3px;
+    }
+
+    .lang-caret {
+      font-size: 12px;
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+
+    .lang-menu {
+      position: fixed;
+      top: 90px;
+      right: 48px;
+      z-index: 80;
+      min-width: 180px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.95);
+      backdrop-filter: blur(18px);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .lang-menu[hidden] {
+      display: none;
+    }
+
+    .lang-menu a {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 0;
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.92);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .lang-menu a:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .lang-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      z-index: 75;
+    }
+
+    .lang-backdrop[hidden] {
+      display: none;
+    }
+
+    .nav-toggle {
+      height: 46px;
+      width: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(237,246,255,.92);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-toggle span {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(237,246,255,.92);
+      display: block;
+    }
+
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 60;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 90px;
+      left: 12px;
+      right: 12px;
+      z-index: 70;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(12,20,34,.92);
+      backdrop-filter: blur(18px);
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .mobile-menu a {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      color: rgba(237,246,255,.92);
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .mobile-backdrop[hidden],
+    .mobile-menu[hidden] {
+      display: none;
+    }
+
+    .section {
+      position: relative;
+      padding: 140px 7vw;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: var(--ice-2);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 13px;
+      margin-bottom: 22px;
+      font-weight: 800;
+    }
+
+    .legal-hero {
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(900px 420px at 35% 15%, rgba(0,29,255,.36), transparent 62%),
+        radial-gradient(760px 360px at 78% 38%, rgba(0,220,200,.16), transparent 62%),
+        linear-gradient(180deg, #070b14 0%, #0c1422 52%, #05070d 100%);
+      padding-top: 150px;
+      padding-bottom: 100px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .legal-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 12px 12px;
+      opacity: .28;
+    }
+
+    .legal-hero h1 {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(44px, 7vw, 96px);
+      line-height: .92;
+      color: #030917;
+      text-shadow: 0 0 20px rgba(220,240,255,.45);
+      margin-bottom: 28px;
+      max-width: 980px;
+    }
+
+    .legal-hero h1 span {
+      display: block;
+      color: var(--ice);
+      font-weight: 400;
+    }
+
+    .section-lead {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      color: #eaf5ff;
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.7;
+    }
+
+    .updated {
+      position: relative;
+      z-index: 2;
+      margin-top: 22px;
+      color: rgba(237,246,255,.72);
+      font-size: 14px;
+    }
+
+    .ph {
+      background: rgba(217,236,255,.14);
+      border: 1px dashed rgba(217,236,255,.38);
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-weight: 800;
+      color: var(--ice);
+      white-space: nowrap;
+    }
+
+    .legal-body {
+      background: var(--light);
+      color: #07101d;
+      padding: 86px 7vw 112px;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .legal-toc {
+      position: sticky;
+      top: 118px;
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .legal-toc a {
+      color: #263245;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      line-height: 1.3;
+      font-weight: 700;
+      transition: .15s ease;
+    }
+
+    .legal-toc a:hover {
+      color: #07101d;
+      background: rgba(255,255,255,.46);
+      border-color: rgba(7,16,29,.08);
+      transform: translateX(2px);
+    }
+
+    .legal-content {
+      max-width: 820px;
+    }
+
+    .legal-content section {
+      padding: 0 0 44px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid rgba(7,16,29,.12);
+    }
+
+    .legal-content section:last-child {
+      border-bottom: none;
+    }
+
+    .legal-content h2 {
+      color: #07101d;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .legal-content h3 {
+      color: #07101d;
+      font-size: 20px;
+      margin: 26px 0 10px;
+    }
+
+    .legal-content p {
+      color: #263245;
+      margin-bottom: 14px;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .legal-content ul {
+      margin: 8px 0 18px;
+      padding-left: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .legal-content ul li {
+      position: relative;
+      padding-left: 24px;
+      color: #263245;
+      line-height: 1.6;
+    }
+
+    .legal-content ul li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(0,29,255,.26);
+    }
+
+    .num {
+      color: #001dff;
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .legal-card {
+      margin-top: 20px;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(0,29,255,.32), transparent 48%),
+        #0c1422;
+      color: #fff;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 28px 90px rgba(0,0,0,.16);
+    }
+
+    .legal-card h3 {
+      color: var(--ice);
+      margin-top: 0;
+    }
+
+    .legal-card p {
+      color: rgba(237,246,255,.78);
+    }
+
+    .legal-card a {
+      color: var(--ice-2);
+      font-weight: 900;
+    }
+
+    .legal-note {
+      margin-top: 20px;
+      padding: 20px 22px;
+      background: rgba(255,255,255,.45);
+      border: 1px solid rgba(7,16,29,.1);
+      border-radius: 20px;
+      font-size: 14px;
+      color: #263245;
+    }
+
+    footer {
+      background: linear-gradient(180deg, #060910, #111a2a);
+      color: #edf6ff;
+      padding: 80px 7vw 50px;
+    }
+
+    .footer-grid {
+      max-width: 1320px;
+      margin: auto;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 50px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    footer p,
+    footer a {
+      color: rgba(237,246,255,.82);
+      font-size: 17px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand {
+      font-family: Orbitron, sans-serif;
+      font-size: 42px;
+      line-height: .9;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .footer-mark {
+      width: 220px;
+      display: block;
+    }
+
+    .footer-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .footer-title {
+      color: #edf6ff;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 1100px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .legal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-toc {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header {
+        height: 78px;
+        padding: 0 20px;
+      }
+
+      .top-logo {
+        width: 154px;
+      }
+
+      .nav-actions {
+        width: 154px;
+      }
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .mobile-menu {
+        top: 78px;
+      }
+
+      .mega-menu {
+        top: 78px;
+      }
+
+      .lang-menu {
+        top: 78px;
+        right: 20px;
+      }
+
+      .legal-hero {
+        padding: 130px 24px 78px;
+        min-height: 68vh;
+      }
+
+      .legal-body {
+        padding: 72px 24px 88px;
+      }
+
+      .legal-hero h1 {
+        font-size: clamp(44px, 14vw, 70px);
+      }
+
+      .section-lead {
+        font-size: 16px;
+      }
+
+      .footer-brand {
+        font-size: 30px;
+      }
+
+      .footer-mark {
+        width: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a class="nav-logo" href="index.html" aria-label="GEENESSYS Home">
+      <span class="top-logo" aria-hidden="true">
+        <img src="VISUAL/geenessys_logo_blanco.png" alt="">
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegación principal">
+      <button class="nav-item-btn mega-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="megaMenu">
+        Explorar
+      </button>
+      <a href="index.html#contact">Contacto</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
+        <span>ES</span>
+        <span class="lang-caret" aria-hidden="true">⌄</span>
+      </button>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="lang-backdrop" hidden></div>
+
+  <div class="lang-menu" id="langMenu" role="menu" hidden>
+    <a role="menuitem" href="index.html" lang="es">ES - Español</a>
+    <a role="menuitem" href="index-en.html" lang="en">EN - English</a>
+  </div>
+
+  <div class="mega-backdrop" hidden></div>
+
+  <nav class="mega-menu" id="megaMenu" hidden aria-label="Explorar">
+    <div class="mega-inner">
+      <div class="mega-grid">
+        <div class="mega-col">
+          <div class="mega-title">Proyectos</div>
+          <a class="mega-link" href="index.html">GEENESSYS Platform</a>
+          <a class="mega-link" href="core.html">GEENESSYS 7.1.1.</a>
+          <a class="mega-link" href="drones.html">GEENESSYS Drones</a>
+          <a class="mega-link" href="op-ai.html">GEENESSYS OP AI</a>
+          <a class="mega-link" href="dee-universe.html">DEE Universe</a>
+        </div>
+
+        <div class="mega-col">
+          <div class="mega-title">Tecnología</div>
+          <a class="mega-link" href="technology.html">Arquitectura</a>
+          <a class="mega-link" href="technology-vision.html">Technology Vision</a>
+          <div class="mega-spacer"></div>
+          <div class="mega-title">Legal</div>
+          <a class="mega-link" href="privacy.html">Aviso de privacidad</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-backdrop" hidden></div>
+
+  <nav class="mobile-menu" hidden aria-label="Menú móvil">
+    <a href="index.html#contact">Contacto</a>
+    <a href="index.html#solutions">Soluciones</a>
+    <a href="index.html#industries">Industrias</a>
+    <a href="index.html#evaluation">Evaluación</a>
+    <a href="core.html">GEENESSYS 7.1.1.</a>
+    <a href="drones.html">GEENESSYS Drones</a>
+    <a href="op-ai.html">GEENESSYS OP AI</a>
+    <a href="dee-universe.html">DEE Universe</a>
+    <a href="technology.html">Arquitectura</a>
+    <a href="technology-vision.html">Technology Vision</a>
+    <a href="privacy.html">Aviso de privacidad</a>
+  </nav>
+
+  <main>
+    <section class="legal-hero">
+      <div class="container">
+        <div class="eyebrow">Documento legal</div>
+
+        <h1>
+          Aviso de
+          <span>Privacidad Integral</span>
+        </h1>
+
+        <p class="section-lead">
+          Este Aviso de Privacidad se emite en cumplimiento de la Ley Federal de Protección de Datos
+          Personales en Posesión de los Particulares vigente en los Estados Unidos Mexicanos.
+        </p>
+
+        <p class="updated">Última actualización: 30/06/2026</p>
+      </div>
+    </section>
+
+    <section class="legal-body">
+      <div class="container legal-grid">
+
+        <nav class="legal-toc" aria-label="Índice del aviso">
+          <a href="#responsable">1. Responsable</a>
+          <a href="#datos">2. Datos que recabamos</a>
+          <a href="#finalidades">3. Finalidades</a>
+          <a href="#consentimiento">4. Consentimiento</a>
+          <a href="#transferencias">5. Transferencias</a>
+          <a href="#arco">6. Derechos ARCO</a>
+          <a href="#limitar">7. Limitar uso o divulgación</a>
+          <a href="#cookies">8. Cookies y tecnologías</a>
+          <a href="#cambios">9. Cambios al aviso</a>
+          <a href="#autoridad">10. Autoridad</a>
+        </nav>
+
+        <div class="legal-content">
+
+          <section id="responsable">
+            <h2><span class="num">1.</span>Identidad y domicilio del responsable</h2>
+
+            <p>
+              El responsable del tratamiento de sus datos personales es
+              Iván Erick Tlatecatl Morales,
+              con domicilio en
+              C. 2 Sur 308, La Santísima Trinidad, 72810 San Andrés Cholula, Pue.,
+              y correo electrónico de contacto
+              info@geenessys.com
+              (en adelante, "el Responsable").
+            </p>
+
+            <p>
+              El Responsable es el encargado de recabar, usar y proteger los datos personales que usted
+              proporciona a través de este sitio web, conforme a los principios de licitud, consentimiento,
+              información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad previstos en la ley.
+            </p>
+          </section>
+
+          <section id="datos">
+            <h2><span class="num">2.</span>Datos personales que recabamos</h2>
+
+            <p>
+              A través del formulario de contacto de este sitio recabamos, de forma directa y por medios
+              electrónicos, únicamente los siguientes datos personales:
+            </p>
+
+            <ul>
+              <li>Nombre completo.</li>
+              <li>Empresa u organización.</li>
+              <li>Correo electrónico.</li>
+              <li>La información que usted decida incluir libremente en el campo de mensaje, así como el tipo de interés seleccionado (NDA, licenciamiento, adquisición, integración o consulta técnica).</li>
+            </ul>
+
+            <p>
+              No recabamos datos personales sensibles, ni datos financieros o patrimoniales, a través de
+              este sitio.
+            </p>
+          </section>
+
+          <section id="finalidades">
+            <h2><span class="num">3.</span>Finalidades del tratamiento</h2>
+
+            <h3>Finalidades primarias (necesarias)</h3>
+            <p>Sus datos se utilizan para las siguientes finalidades que dan origen y son necesarias para la relación con usted:</p>
+
+            <ul>
+              <li>Atender, dar seguimiento y responder a su solicitud de información, NDA, licenciamiento, adquisición o integración.</li>
+              <li>Contactarle por medios electrónicos o telefónicos para coordinar conversaciones técnicas, due diligence o transferencia de propiedad intelectual.</li>
+              <li>Identificar y calificar al solicitante como contraparte o socio potencial.</li>
+              <li>Dar cumplimiento a obligaciones derivadas de la relación que, en su caso, se establezca.</li>
+            </ul>
+
+            <h3>Finalidades secundarias (opcionales)</h3>
+            <p>
+              Actualmente no utilizamos sus datos personales para finalidades secundarias, como envío de
+              información institucional, publicidad o boletines. En caso de que esto cambie en el futuro,
+              se le informará oportunamente y podrá manifestar su oposición conforme a la sección 7 de este aviso.
+            </p>
+          </section>
+
+          <section id="consentimiento">
+            <h2><span class="num">4.</span>Consentimiento</h2>
+
+            <p>
+              Al proporcionar sus datos personales a través del formulario de este sitio y enviar su solicitud,
+              usted reconoce haber leído el presente Aviso de Privacidad y otorga su consentimiento para el
+              tratamiento de sus datos conforme a las finalidades aquí descritas. El consentimiento puede ser
+              revocado en cualquier momento conforme a la sección 6.
+            </p>
+          </section>
+
+          <section id="transferencias">
+            <h2><span class="num">5.</span>Transferencias de datos personales</h2>
+
+            <p>
+              El Responsable no transferirá sus datos personales a terceros sin su consentimiento, salvo en los
+              supuestos de excepción previstos por la ley, por ejemplo, cuando la transferencia esté prevista en
+              una norma, sea necesaria para la procuración o administración de justicia, o se realice entre
+              empresas de un mismo grupo bajo políticas comunes.
+            </p>
+
+            <p>
+              En caso de que el Responsable requiera transferir datos a terceros distintos de los anteriores
+              (actualmente no se comparten con terceros),
+              se lo informará y, cuando la ley lo exija, recabará su consentimiento.
+            </p>
+          </section>
+
+          <section id="arco">
+            <h2><span class="num">6.</span>Medios para ejercer los derechos ARCO y revocar el consentimiento</h2>
+
+            <p>
+              Usted tiene derecho a conocer qué datos personales tenemos, para qué los utilizamos y las
+              condiciones de su uso (Acceso); a solicitar su corrección cuando sean inexactos o incompletos
+              (Rectificación); a que los eliminemos de nuestros registros cuando considere que no se utilizan
+              conforme a la normativa (Cancelación); así como a oponerse al uso de sus datos para fines
+              específicos (Oposición). Estos se conocen como derechos ARCO.
+            </p>
+
+            <p>
+              Para ejercer cualquiera de estos derechos, o para revocar su consentimiento, envíe una solicitud al
+              correo info@geenessys.com indicando:
+            </p>
+
+            <ul>
+              <li>Nombre del titular y medio para comunicarle la respuesta.</li>
+              <li>Documento que acredite su identidad (o la representación legal, en su caso).</li>
+              <li>Descripción clara y precisa del derecho que desea ejercer o de la solicitud concreta.</li>
+              <li>Cualquier elemento que facilite la localización de los datos personales.</li>
+            </ul>
+
+            <p>
+              El Responsable dará respuesta a su solicitud en los plazos establecidos por la ley aplicable.
+            </p>
+          </section>
+
+          <section id="limitar">
+            <h2><span class="num">7.</span>Medios para limitar el uso o divulgación de sus datos</h2>
+
+            <p>
+              Puede solicitar la limitación del uso o divulgación de sus datos personales enviando su petición al
+              correo info@geenessys.com. Asimismo, en cualquier comunicación
+              que reciba de nuestra parte se incluirá un mecanismo para que pueda solicitar dejar de recibirla.
+            </p>
+          </section>
+
+          <section id="cookies">
+            <h2><span class="num">8.</span>Uso de cookies y tecnologías de rastreo</h2>
+
+            <p>
+              Este sitio no utiliza cookies ni tecnologías de rastreo que recaben datos personales de forma automática.
+            </p>
+          </section>
+
+          <section id="cambios">
+            <h2><span class="num">9.</span>Modificaciones al Aviso de Privacidad</h2>
+
+            <p>
+              El presente Aviso de Privacidad puede sufrir modificaciones derivadas de cambios legales, de
+              nuestras prácticas internas o de nuevos requerimientos. Cualquier cambio será publicado en esta
+              misma página, indicando la fecha de la última actualización. Le recomendamos revisarla
+              periódicamente.
+            </p>
+          </section>
+
+          <section id="autoridad">
+            <h2><span class="num">10.</span>Autoridad en materia de protección de datos</h2>
+
+            <p>
+              Si considera que su derecho a la protección de datos personales ha sido vulnerado, puede acudir
+              ante la autoridad competente en materia de protección de datos personales en posesión de los
+              particulares en México.
+            </p>
+
+            <div class="legal-card">
+              <h3>¿Dudas sobre este aviso?</h3>
+
+              <p>
+                Para cualquier consulta relacionada con el tratamiento de sus datos personales, escríbanos a
+                <a href="mailto:info@geenessys.com">info@geenessys.com</a>.
+              </p>
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="footer-mark" aria-hidden="true">
+            <img src="VISUAL/geenessys_logo_blanco.png" alt="">
+          </span>
+        </div>
+
+        <p>
+          Plataforma de autonomía verificable para sistemas físicos, digitales y empresariales.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">Plataforma</div>
+        <a href="index.html#solutions">Soluciones</a>
+        <a href="index.html#industries">Industrias</a>
+        <a href="index.html#evaluation">Evaluación</a>
+        <a href="index.html#contact">Contacto</a>
+      </div>
+
+      <div>
+        <div class="footer-title">Tecnología</div>
+        <a href="technology.html">Arquitectura</a>
+        <a href="core.html">GEENESSYS 7.1.1.</a>
+        <a href="drones.html">GEENESSYS Drones</a>
+        <a href="op-ai.html">GEENESSYS OP AI</a>
+        <a href="dee-universe.html">DEE Universe</a>
+        <a href="privacy.html">Aviso de privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const backdrop = document.querySelector('.mobile-backdrop');
+    const langToggle = document.getElementById('langToggle');
+    const langMenu = document.getElementById('langMenu');
+    const langBackdrop = document.querySelector('.lang-backdrop');
+    const megaTrigger = document.querySelector('.mega-trigger');
+    const megaMenu = document.getElementById('megaMenu');
+    const megaBackdrop = document.querySelector('.mega-backdrop');
+    const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let megaCloseTimer;
+
+    function closeLangMenu() {
+      if (!langToggle || !langMenu || !langBackdrop) return;
+      langMenu.hidden = true;
+      langBackdrop.hidden = true;
+      langToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openLangMenu() {
+      if (!langToggle || !langMenu || !langBackdrop) return;
+      closeMenu();
+      closeMegaMenu();
+      langMenu.hidden = false;
+      langBackdrop.hidden = false;
+      langToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMegaMenu() {
+      if (!megaTrigger || !megaMenu || !megaBackdrop) return;
+      window.clearTimeout(megaCloseTimer);
+      megaMenu.hidden = true;
+      megaBackdrop.hidden = true;
+      megaTrigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function openMegaMenu() {
+      if (!megaTrigger || !megaMenu || !megaBackdrop) return;
+      window.clearTimeout(megaCloseTimer);
+      closeMenu();
+      megaMenu.hidden = false;
+      megaBackdrop.hidden = false;
+      megaTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function scheduleMegaMenuClose() {
+      if (!supportsHoverMenu.matches) return;
+      window.clearTimeout(megaCloseTimer);
+      megaCloseTimer = window.setTimeout(() => {
+        closeMegaMenu();
+      }, 180);
+    }
+
+    function closeMenu() {
+      document.body.classList.remove('menu-open');
+      mobileMenu.hidden = true;
+      backdrop.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openMenu() {
+      closeMegaMenu();
+      closeLangMenu();
+      document.body.classList.add('menu-open');
+      mobileMenu.hidden = false;
+      backdrop.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.mobile-menu a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    if (langToggle && langMenu && langBackdrop) {
+      langToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeLangMenu() : openLangMenu();
+      });
+
+      langBackdrop.addEventListener('click', closeLangMenu);
+
+      langMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeLangMenu);
+      });
+    }
+
+    if (megaTrigger && megaMenu && megaBackdrop) {
+      megaTrigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = megaTrigger.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeMegaMenu() : openMegaMenu();
+      });
+
+      if (supportsHoverMenu.matches) {
+        megaTrigger.addEventListener('mouseenter', openMegaMenu);
+        megaTrigger.addEventListener('mouseleave', scheduleMegaMenuClose);
+        megaMenu.addEventListener('mouseenter', openMegaMenu);
+        megaMenu.addEventListener('mouseleave', scheduleMegaMenuClose);
+      }
+
+      megaBackdrop.addEventListener('click', closeMegaMenu);
+
+      megaMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMegaMenu);
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+        closeMegaMenu();
+        closeLangMenu();
+      }
+    });
+
+  </script>
+</body>
+</html>
