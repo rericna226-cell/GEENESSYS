@@ -1219,8 +1219,8 @@
   <div class="lang-backdrop" hidden></div>
 
   <div class="lang-menu" id="langMenu" role="menu" hidden>
-    <a role="menuitem" href="index.html" lang="es">ES - Spanish</a>
-    <a role="menuitem" href="index-en.html" lang="en">EN - English</a>
+    <a role="menuitem" href="technology.html" lang="es">ES - Spanish</a>
+    <a role="menuitem" href="technology-en.html" lang="en">EN - English</a>
   </div>
 
   <div class="mega-backdrop" hidden></div>
@@ -1231,19 +1231,19 @@
         <div class="mega-col">
           <div class="mega-title">Projects</div>
           <a class="mega-link" href="index-en.html">GEENESSYS Platform</a>
-          <a class="mega-link" href="core.html">GEENESSYS 7.1.1.</a>
-          <a class="mega-link" href="drones.html">GEENESSYS Drones</a>
-          <a class="mega-link" href="op-ai.html">GEENESSYS OP AI</a>
-          <a class="mega-link" href="dee-universe.html">DEE Universe</a>
+          <a class="mega-link" href="core-en.html">GEENESSYS 7.1.1.</a>
+          <a class="mega-link" href="drones-en.html">GEENESSYS Drones</a>
+          <a class="mega-link" href="op-ai-en.html">GEENESSYS OP AI</a>
+          <a class="mega-link" href="dee-universe-en.html">DEE Universe</a>
         </div>
 
         <div class="mega-col">
           <div class="mega-title">Technology</div>
           <a class="mega-link" href="technology-en.html">Architecture</a>
-          <a class="mega-link" href="technology-vision.html">Technology Vision</a>
+          <a class="mega-link" href="technology-vision-en.html">Technology Vision</a>
           <div class="mega-spacer"></div>
           <div class="mega-title">Legal</div>
-          <a class="mega-link" href="privacy.html">Privacy notice</a>
+          <a class="mega-link" href="privacy-en.html">Privacy notice</a>
         </div>
       </div>
     </div>
@@ -1256,13 +1256,13 @@
     <a href="index-en.html#solutions">Solutions</a>
     <a href="index-en.html#industries">Industries</a>
     <a href="index-en.html#evaluation">Evaluation</a>
-    <a href="core.html">GEENESSYS 7.1.1.</a>
-    <a href="drones.html">GEENESSYS Drones</a>
-    <a href="op-ai.html">GEENESSYS OP AI</a>
-    <a href="dee-universe.html">DEE Universe</a>
+    <a href="core-en.html">GEENESSYS 7.1.1.</a>
+    <a href="drones-en.html">GEENESSYS Drones</a>
+    <a href="op-ai-en.html">GEENESSYS OP AI</a>
+    <a href="dee-universe-en.html">DEE Universe</a>
     <a href="technology-en.html">Architecture</a>
-    <a href="technology-vision.html">Technology Vision</a>
-    <a href="privacy.html">Privacy notice</a>
+    <a href="technology-vision-en.html">Technology Vision</a>
+    <a href="privacy-en.html">Privacy notice</a>
   </nav>
 
   <main>
@@ -1556,7 +1556,7 @@
 
         <div class="buttons">
           <a class="btn primary" href="index-en.html#contact">Request technical evaluation</a>
-          <a class="btn secondary" href="core.html">View GEENESSYS Core</a>
+          <a class="btn secondary" href="core-en.html">View GEENESSYS Core</a>
         </div>
       </div>
     </section>
@@ -1587,11 +1587,11 @@
       <div>
         <div class="footer-title">Technology</div>
         <a href="technology-en.html">Architecture</a>
-        <a href="core.html">GEENESSYS 7.1.1.</a>
-        <a href="drones.html">GEENESSYS Drones</a>
-        <a href="op-ai.html">GEENESSYS OP AI</a>
-        <a href="dee-universe.html">DEE Universe</a>
-        <a href="privacy.html">Privacy notice</a>
+        <a href="core-en.html">GEENESSYS 7.1.1.</a>
+        <a href="drones-en.html">GEENESSYS Drones</a>
+        <a href="op-ai-en.html">GEENESSYS OP AI</a>
+        <a href="dee-universe-en.html">DEE Universe</a>
+        <a href="privacy-en.html">Privacy notice</a>
       </div>
     </div>
   </footer>
@@ -1608,6 +1608,18 @@
     const megaBackdrop = document.querySelector('.mega-backdrop');
     const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
     let megaCloseTimer;
+
+    window.addEventListener('load', () => {
+      const restore = sessionStorage.getItem('langScrollRestore') === '1';
+      const y = sessionStorage.getItem('langScrollY');
+      if (restore && y && !window.location.hash) {
+        sessionStorage.removeItem('langScrollRestore');
+        sessionStorage.removeItem('langScrollY');
+        window.requestAnimationFrame(() => {
+          window.scrollTo(0, Number(y));
+        });
+      }
+    });
 
     function closeLangMenu() {
       if (!langToggle || !langMenu || !langBackdrop) return;
@@ -1687,7 +1699,21 @@
       langBackdrop.addEventListener('click', closeLangMenu);
 
       langMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeLangMenu);
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const href = link.getAttribute('href');
+          if (!href) return;
+          const currentHash = window.location.hash;
+          if (currentHash && !href.includes('#')) {
+            sessionStorage.removeItem('langScrollRestore');
+            sessionStorage.removeItem('langScrollY');
+            window.location.href = href + currentHash;
+            return;
+          }
+          sessionStorage.setItem('langScrollRestore', '1');
+          sessionStorage.setItem('langScrollY', String(window.scrollY));
+          window.location.href = href;
+        });
       });
     }
 

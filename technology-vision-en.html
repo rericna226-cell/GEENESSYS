@@ -10,11 +10,11 @@
   <link rel="apple-touch-icon" sizes="180x180" href="favicon (2)/apple-touch-icon.png" />
   <link rel="manifest" href="favicon (2)/site.webmanifest" />
 
-  <title>GEENESSYS DEE Universe - Discrete simulation and research</title>
+  <title>Technology Vision - GEENESSYS Research</title>
 
   <meta
     name="description"
-    content="GEENESSYS DEE Universe is a research platform for discrete simulation, 3D cellular automata, emergent physics, and reproducible computational science."
+    content="Technology vision of GEENESSYS Research: emergent computing, neuromorphic hardware, topological cryptography, structural memory, discrete simulation, and deterministic systems."
   />
 
   <style>
@@ -719,7 +719,10 @@
       display: grid;
       place-items: center;
       text-align: center;
-      background: #000;
+      background:
+        radial-gradient(900px 420px at 35% 15%, rgba(106,70,255,.36), transparent 62%),
+        radial-gradient(760px 360px at 78% 38%, rgba(0,220,200,.18), transparent 62%),
+        linear-gradient(180deg, #070b14 0%, #0c1422 52%, #05070d 100%);
       padding-top: 120px;
     }
 
@@ -727,14 +730,27 @@
       content: "";
       position: absolute;
       inset: 0;
-      display: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 12px 12px;
+      opacity: .28;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      display: none;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          transparent 0 54px,
+          rgba(106,70,255,.45) 54px 66px,
+          transparent 66px 108px
+        );
+      mask-image: radial-gradient(circle at center, #000 0 45%, transparent 72%);
+      opacity: .45;
+      animation: pulseGrid 8s ease-in-out infinite alternate;
     }
 
     @keyframes pulseGrid {
@@ -749,16 +765,26 @@
       margin: 0 auto;
     }
 
-    .hero-logo {
-      width: min(620px, 100%);
-      margin: 0 auto 28px;
-      filter: drop-shadow(0 0 26px rgba(219,239,255,.18));
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: white;
+      font-weight: 700;
+      margin-bottom: 30px;
+      backdrop-filter: blur(12px);
     }
 
-    .hero-logo img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .hero-badge span {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--ice-2);
+      box-shadow: 0 0 18px rgba(168,212,255,.8);
     }
 
     .hero-copy {
@@ -803,18 +829,18 @@
       margin-bottom: 12px;
     }
 
-    .universe-band {
+    .vision-map {
       background: #0f1726;
       text-align: center;
     }
 
-    .universe-band .container {
+    .vision-map .container {
       max-width: 980px;
     }
 
     .pill-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
       margin-top: 44px;
       position: relative;
@@ -831,58 +857,97 @@
       backdrop-filter: blur(12px);
     }
 
-    .cards-section {
+    .directions {
       background: linear-gradient(180deg, #060910, #111a2a);
     }
 
-    .card-grid {
+    .direction-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card-grid.two {
       grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 70px;
     }
 
-    .card {
-      min-height: 360px;
+    .direction-card {
+      position: relative;
+      min-height: 390px;
+      padding: 38px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 30px;
+      overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)),
         #111a2a;
-      padding: 42px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,.06);
       box-shadow: 0 30px 90px rgba(0,0,0,.25);
     }
 
-    .num {
+    .direction-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(23,61,255,.35), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(168,212,255,.12), transparent 45%),
+        repeating-linear-gradient(
+          90deg,
+          rgba(168,212,255,.06) 0 1px,
+          transparent 1px 42px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(168,212,255,.04) 0 1px,
+          transparent 1px 42px
+        );
+      opacity: .8;
+    }
+
+    .direction-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .direction-number {
       font-family: Orbitron, sans-serif;
       color: var(--ice-2);
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 18px;
+      margin-bottom: 22px;
     }
 
-    .card h3 {
-      font-size: 26px;
+    .direction-card h3 {
       margin-bottom: 18px;
+      color: var(--ice);
     }
 
-    .card ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 15px;
+    .direction-card p {
+      margin-bottom: 22px;
     }
 
-    .card li::before {
-      content: "•";
-      color: var(--ice-2);
-      margin-right: 8px;
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(237,246,255,.86);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status {
+      margin-top: 26px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.2);
+      border: none;
+      color: rgba(237,246,255,.82);
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     .light-section {
@@ -903,68 +968,29 @@
       color: #07101d;
     }
 
-    .spec-grid {
+    .collab-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 34px;
+      gap: 70px;
+      align-items: start;
       margin-top: 56px;
     }
 
-    .spec-card {
-      border-top: 2px solid rgba(7,16,29,.18);
-      padding-top: 24px;
+    .collab-list {
+      display: grid;
+      gap: 14px;
     }
 
-    .spec-card h3 {
-      margin-bottom: 14px;
+    .collab-item {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.42);
+      border: 1px solid rgba(7,16,29,.09);
       color: #07101d;
+      font-weight: 700;
     }
 
-    .spec-card ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-      color: #263245;
-    }
-
-    .spec-card li::before {
-      content: "•";
-      color: #001dff;
-      margin-right: 8px;
-      font-weight: 900;
-    }
-
-    .research {
-      background:
-        radial-gradient(circle at 90% 10%, rgba(168,212,255,.12), transparent 28%),
-        #111a2a;
-    }
-
-    .research-grid {
-      display: grid;
-      gap: 22px;
-      margin-top: 56px;
-    }
-
-    .research-item {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 34px;
-      padding: 30px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 28px;
-      background: rgba(255,255,255,.035);
-      box-shadow: 0 30px 90px rgba(0,0,0,.22);
-    }
-
-    .research-item strong {
-      font-family: Orbitron, sans-serif;
-      color: var(--ice-2);
-      letter-spacing: .06em;
-    }
-
-    .disclaimer {
+    .rigor {
       background: #0d1422;
       text-align: center;
     }
@@ -978,7 +1004,7 @@
       box-shadow: 0 0 50px rgba(168,212,255,.35);
     }
 
-    .disclaimer p + p {
+    .rigor p + p {
       margin-top: 20px;
     }
 
@@ -1103,13 +1129,11 @@
       }
 
       .two-col,
-      .spec-grid,
-      .research-item {
+      .direction-grid,
+      .collab-grid {
         grid-template-columns: 1fr;
       }
 
-      .card-grid,
-      .card-grid.two,
       .pill-grid {
         grid-template-columns: 1fr;
       }
@@ -1170,6 +1194,11 @@
         font-size: 16px;
       }
 
+      .direction-card {
+        min-height: 360px;
+        padding: 30px 24px;
+      }
+
       .cta-box {
         padding: 38px 24px;
       }
@@ -1217,8 +1246,8 @@
   <div class="lang-backdrop" hidden></div>
 
   <div class="lang-menu" id="langMenu" role="menu" hidden>
-    <a role="menuitem" href="dee-universe.html" lang="es">ES - Spanish</a>
-    <a role="menuitem" href="dee-universe-en.html" lang="en">EN - English</a>
+    <a role="menuitem" href="technology-vision.html" lang="es">ES - Spanish</a>
+    <a role="menuitem" href="technology-vision-en.html" lang="en">EN - English</a>
   </div>
 
   <div class="mega-backdrop" hidden></div>
@@ -1266,23 +1295,24 @@
   <main>
     <section class="section hero">
       <div class="hero-inner">
-        <div class="hero-logo">
-          <img src="VISUAL/DEEUniverseLOGOBlanco.png" alt="DEE Universe">
-        </div>
+        <h1>
+          Technology
+          <span>Vision</span>
+        </h1>
 
         <p class="hero-copy">
-          Computational simulation platform for research in discrete physics, 3D cellular automata,
-          emergent models, and reproducible science.
+          Future research lines for GEENESSYS Research: emergent computing,
+          neuromorphic hardware, topological cryptography, structural memory, and discrete simulation.
         </p>
 
         <p class="hero-note">
-          GEENESSYS DEE Universe is the research line within the GEENESSYS ecosystem:
-          an experimental foundation to explore discrete systems, local rules, and emergent phenomena.
+          This page does not present immediate commercial promises. It presents a research vision:
+          technical directions that may be explored through scientific collaboration, prototyping, and formal validation.
         </p>
 
         <div class="buttons">
-          <a class="btn primary" href="#capabilities">View capabilities</a>
-          <a class="btn secondary" href="index-en.html#contact">Request collaboration</a>
+          <a class="btn primary" href="#directions">View research directions</a>
+          <a class="btn secondary" href="dee-universe-en.html">View DEE Universe</a>
         </div>
       </div>
     </section>
@@ -1290,111 +1320,147 @@
     <section class="section dark-section">
       <div class="container two-col">
         <div>
-          <div class="eyebrow">What is DEE Universe</div>
-          <h2>A computational laboratory for discrete universes.</h2>
+          <div class="eyebrow">Vision</div>
+          <h2>From discrete simulation to new computational models.</h2>
           <p>
-            DEE Universe enables experiments with local rules, three-dimensional lattices,
-            emergent dynamics, and reproducible evolution of complex systems.
+            GEENESSYS Research's technology vision starts from a central question:
+            if complex systems can emerge from local rules, what new ways of computing,
+            storing memory, protecting information, or designing hardware could arise from that logic?
           </p>
         </div>
 
         <div class="feature-list">
           <article class="feature">
-            <h3>Discrete physics</h3>
+            <h3>Emergent systems</h3>
             <p>
-              Explore how global patterns can emerge from local rules applied over discrete structures.
+              Study how global behaviors can appear from discrete local rules.
             </p>
           </article>
 
           <article class="feature">
-            <h3>3D cellular automata</h3>
+            <h3>Topology as structure</h3>
             <p>
-              Simulate three-dimensional evolution with topological rules, memory, and reproducible structures.
+              Explore memory, identity, routes, and security through geometry, connectivity, and structural persistence.
             </p>
           </article>
 
           <article class="feature">
-            <h3>Reproducible science</h3>
+            <h3>Reproducible computing</h3>
             <p>
-              Designed for controlled experiments, seeds, checkpoints, and comparison of results.
+              Build deterministic, comparable, and documentable experiments for advanced research.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section universe-band">
+    <section class="section vision-map">
       <div class="container">
-        <div class="eyebrow">Paradigm</div>
+        <div class="eyebrow">Vision map</div>
 
-        <h2>From local rules to emergent phenomena.</h2>
+        <h2>Five lines for future exploration.</h2>
 
         <p>
-          Rather than relying only on continuous equations, DEE Universe studies systems
-          where dynamics arise from discrete, reproducible, and computable interactions.
+          These lines connect DEE Universe with research areas that could impact simulation,
+          security, hardware, memory, and autonomous systems.
         </p>
 
         <div class="pill-grid">
-          <div class="pill">3D lattice</div>
-          <div class="pill">Local rules</div>
-          <div class="pill">Discrete evolution</div>
-          <div class="pill">Reproducibility</div>
+          <div class="pill">Emergent computing</div>
+          <div class="pill">Neuromorphic hardware</div>
+          <div class="pill">Topological cryptography</div>
+          <div class="pill">Structural memory</div>
+          <div class="pill">Discrete simulation</div>
         </div>
       </div>
     </section>
 
-    <section id="capabilities" class="section cards-section">
+    <section id="directions" class="section directions">
       <div class="container">
         <div class="center">
-          <div class="eyebrow">Capabilities</div>
-          <h2>Discrete simulation for advanced research.</h2>
+          <div class="eyebrow">Research directions</div>
+          <h2>Long-horizon technology directions.</h2>
           <p>
-            DEE Universe is designed for researchers, laboratories, educators, and R&amp;D teams
-            that need highly reproducible experimentation with discrete systems.
+            Each line requires research, validation, prototyping, and external collaboration.
+            The goal is to open a technical conversation, not to sell a closed, final implementation.
           </p>
         </div>
 
-        <div class="card-grid">
-          <article class="card">
-            <div class="num">01: DISCRETE</div>
-            <h3>3D cellular automaton</h3>
+        <div class="direction-grid">
+          <article class="direction-card">
+            <div class="direction-number">01: EMERGENT COMPUTING</div>
+            <h3>Emergent computing</h3>
             <p>
-              Simulation engine on a three-dimensional lattice to study evolution,
-              interaction, and emergent structures.
+              Explore whether discrete local rules can produce computational behaviors
+              useful for search, optimization, coordination, or structural classification.
             </p>
-            <ul>
-              <li>Topological rules</li>
-              <li>Discrete states</li>
-              <li>Synchronized evolution</li>
-            </ul>
+
+            <div class="tag-list">
+              <span class="tag">Discrete rules</span>
+              <span class="tag">Local interactions</span>
+              <span class="tag">Pattern emergence</span>
+            </div>
+
+            <div class="status">
+              Status: exploratory line. Requires benchmarks, formalization, and comparison against classical methods.
+            </div>
           </article>
 
-          <article class="card">
-            <div class="num">02: PERFORMANCE</div>
-            <h3>C++ engine with Python interface</h3>
+          <article class="direction-card">
+            <div class="direction-number">02: NEUROMORPHIC HARDWARE</div>
+            <h3>Neuromorphic hardware</h3>
             <p>
-              Performance-oriented architecture with an accessible API for research,
-              prototyping, and experimentation.
+              Investigate potential architectures inspired by local propagation, discrete activation,
+              spatial memory, and distributed processing.
             </p>
-            <ul>
-              <li>C++ kernel</li>
-              <li>Python interface</li>
-              <li>Reproducible pipelines</li>
-            </ul>
+
+            <div class="tag-list">
+              <span class="tag">Edge systems</span>
+              <span class="tag">Local activation</span>
+              <span class="tag">Low-power research</span>
+            </div>
+
+            <div class="status">
+              Status: conceptual research. Application requires collaboration with hardware, VLSI, or specialized labs.
+            </div>
           </article>
 
-          <article class="card">
-            <div class="num">03: RESEARCH</div>
-            <h3>Emergent hypotheses</h3>
+          <article class="direction-card">
+            <div class="direction-number">03: TOPOLOGICAL CRYPTOGRAPHY</div>
+            <h3>Topological cryptography</h3>
             <p>
-              A platform to explore phenomena inspired by emergent gravity,
-              conservation, inertia, topology, and complex dynamics.
+              Explore schemes where security, identity, or verification can be related
+              to topological structures, routes, graphs, or configurations that are difficult to reconstruct.
             </p>
-            <ul>
-              <li>Experimental models</li>
-              <li>Emergent patterns</li>
-              <li>Empirical validation</li>
-            </ul>
+
+            <div class="tag-list">
+              <span class="tag">Topology</span>
+              <span class="tag">Graph structures</span>
+              <span class="tag">Verification</span>
+            </div>
+
+            <div class="status">
+              Status: research hypothesis. Any cryptographic application requires rigorous mathematical review.
+            </div>
+          </article>
+
+          <article class="direction-card">
+            <div class="direction-number">04: STRUCTURAL MEMORY</div>
+            <h3>Structural memory</h3>
+            <p>
+              Investigate memory as persistence of form, routes, fields, configurations, or
+              stable patterns within a discrete system.
+            </p>
+
+            <div class="tag-list">
+              <span class="tag">Persistent patterns</span>
+              <span class="tag">State memory</span>
+              <span class="tag">Topology-aware storage</span>
+            </div>
+
+            <div class="status">
+              Status: experimental line. Must be evaluated against conventional memory, vector databases, and graphs.
+            </div>
           </article>
         </div>
       </div>
@@ -1402,193 +1468,72 @@
 
     <section class="section light-section">
       <div class="container">
-        <div class="eyebrow">Components</div>
+        <div class="eyebrow">Collaboration</div>
 
-        <h2>An experimental foundation for computational science.</h2>
+        <h2>A vision for labs, universities, and R&amp;D.</h2>
 
         <p class="narrow">
-          DEE Universe is not positioned as a primary enterprise product. It is an applied research line
-          for universities, laboratories, academic programs, advanced simulation, and scientific prototyping.
+          Technology Vision should not be positioned as a ready commercial product. It works best as a page
+          for scientific conversation, academic collaboration, applied research, and deep tech investment.
         </p>
 
-        <div class="spec-grid">
-          <article class="spec-card">
-            <h3>Simulation engine</h3>
+        <div class="collab-grid">
+          <div>
+            <h3>Ideal to explore with:</h3>
             <p>
-              Discrete evolution core to run experiments on lattices and local rules.
+              Teams that need an experimental foundation to research discrete systems,
+              computational topology, simulation, security, or new computing architectures.
             </p>
-            <ul>
-              <li>Three-dimensional lattice</li>
-              <li>Discrete states</li>
-              <li>Cycle-based evolution</li>
-            </ul>
-          </article>
+          </div>
 
-          <article class="spec-card">
-            <h3>Research API</h3>
-            <p>
-              Interface designed for experiments, notebooks, prototypes, and academic workflows.
-            </p>
-            <ul>
-              <li>Python interface</li>
-              <li>Parameterizable experiments</li>
-              <li>Results export</li>
-            </ul>
-          </article>
-
-          <article class="spec-card">
-            <h3>Reproducibility</h3>
-            <p>
-              Built to repeat experiments, compare scenarios, and control initial conditions.
-            </p>
-            <ul>
-              <li>Seeds</li>
-              <li>Checkpoints</li>
-              <li>Run-to-run comparison</li>
-            </ul>
-          </article>
-
-          <article class="spec-card">
-            <h3>Scientific extensions</h3>
-            <p>
-              Foundation for new detectors, metrics, visualizations, exporters, and integrations.
-            </p>
-            <ul>
-              <li>Visualization</li>
-              <li>Topological metrics</li>
-              <li>Custom development</li>
-            </ul>
-          </article>
+          <div class="collab-list">
+            <div class="collab-item">Universities and research labs</div>
+            <div class="collab-item">Computational physics programs</div>
+            <div class="collab-item">VLSI / experimental hardware teams</div>
+            <div class="collab-item">Complex systems research</div>
+            <div class="collab-item">Experimental cryptography and graph theory</div>
+            <div class="collab-item">Deep tech partnerships</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section research">
-      <div class="container">
-        <div class="center">
-          <div class="eyebrow">Applications</div>
-          <h2>Academic and R&amp;D use cases.</h2>
-          <p>
-            DEE Universe targets contexts where exploration, reproducibility, and
-            experimentation matter more than immediate commercial deployment.
-          </p>
-        </div>
-
-        <div class="research-grid">
-          <article class="research-item">
-            <strong>01: ACADEMIA</strong>
-            <p>
-              Exploration of discrete physics, cellular automata, emergent computation,
-              complex systems, and reproducible computational science.
-            </p>
-          </article>
-
-          <article class="research-item">
-            <strong>02: EDUCATION</strong>
-            <p>
-              Courses, laboratories, concept visualization, simulation workshops, and
-              advanced programs in physics or computational science.
-            </p>
-          </article>
-
-          <article class="research-item">
-            <strong>03: R&amp;D</strong>
-            <p>
-              Prototyping local rules, specialized simulators, testbeds,
-              and experiments with discrete systems.
-            </p>
-          </article>
-
-          <article class="research-item">
-            <strong>04: PARTNERSHIP</strong>
-            <p>
-              Collaborations with laboratories, universities, research institutes,
-              and scientific integrators.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section disclaimer">
+    <section class="section rigor">
       <div class="container narrow">
         <div class="diamond"></div>
 
-        <div class="eyebrow">Scientific rigor</div>
+        <div class="eyebrow">Rigor and limits</div>
 
-        <h2>Open research, not absolute claims.</h2>
+        <h2>Vision does not mean proven claim.</h2>
 
         <p>
-          DEE Universe can model phenomena inspired by emergent physics, relativity,
-          conservation, topology, and discrete dynamics. Analogies to experimental physics
-          should be treated as research directions that require additional formal validation.
+          The lines described on this page are research directions. Some may become prototypes;
+          others may require mathematical formalization, external validation, or be discarded
+          during the scientific process.
         </p>
 
         <p>
-          The platform is designed to explore hypotheses, reproduce experiments,
-          document results, and enable technical collaboration with scientific teams.
+          GEENESSYS Research should communicate these ideas carefully: as serious technical exploration,
+          not as a product promise, guaranteed cryptographic security, or proven physics.
         </p>
-      </div>
-    </section>
-
-    <section class="section cards-section">
-      <div class="container">
-        <div class="center">
-          <div class="eyebrow">Relationship with GEENESSYS</div>
-          <h2>DEE Universe lives inside GEENESSYS Research.</h2>
-          <p>
-            The GEENESSYS main page focuses on verifiable autonomy, Core, Drones, and OP AI.
-            DEE Universe remains a separate line for research, simulation, and academic collaboration.
-          </p>
-        </div>
-
-        <div class="card-grid two">
-          <article class="card">
-            <div class="num">RESEARCH</div>
-            <h3>Scientific line</h3>
-            <p>
-              Explores discrete systems, local rules, emergence, reproducible simulation,
-              and advanced computational science.
-            </p>
-            <ul>
-              <li>Laboratories</li>
-              <li>Universities</li>
-              <li>Research teams</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <div class="num">ECOSYSTEM</div>
-            <h3>Technology connection</h3>
-            <p>
-              Shares the GEENESSYS philosophy: deterministic, traceable,
-              reproducible systems oriented to verifiable decision-making.
-            </p>
-            <ul>
-              <li>Determinism</li>
-              <li>Reproducibility</li>
-              <li>Modular architecture</li>
-            </ul>
-          </article>
-        </div>
       </div>
     </section>
 
     <section class="section cta">
       <div class="cta-box">
-        <div class="eyebrow">GEENESSYS Research</div>
+        <div class="eyebrow">Research collaboration</div>
 
-        <h2>Explore a scientific or R&amp;D collaboration.</h2>
+        <h2>Let’s talk about applied research.</h2>
 
         <p>
-          Share your research line, laboratory, experimental objective, or simulation case.
-          We will assess whether DEE Universe fits as a collaboration, research license,
-          joint development, or technical access under NDA.
+          Share your research line, lab, hypothesis, technical area, or collaboration interest.
+          We will review whether the best route is technical access, NDA-based collaboration,
+          a joint prototype, or a research partnership.
         </p>
 
         <div class="buttons">
           <a class="btn primary" href="index-en.html#contact">Request collaboration</a>
-          <a class="btn secondary" href="technology-en.html">View GEENESSYS architecture</a>
+          <a class="btn secondary" href="dee-universe-en.html">Back to DEE Universe</a>
         </div>
       </div>
     </section>

@@ -1219,8 +1219,8 @@
   <div class="lang-backdrop" hidden></div>
 
   <div class="lang-menu" id="langMenu" role="menu" hidden>
-    <a role="menuitem" href="index.html" lang="es">ES - Español</a>
-    <a role="menuitem" href="index-en.html" lang="en">EN - English</a>
+    <a role="menuitem" href="technology.html" lang="es">ES - Español</a>
+    <a role="menuitem" href="technology-en.html" lang="en">EN - English</a>
   </div>
 
   <div class="mega-backdrop" hidden></div>
@@ -1609,6 +1609,18 @@
     const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
     let megaCloseTimer;
 
+    window.addEventListener('load', () => {
+      const restore = sessionStorage.getItem('langScrollRestore') === '1';
+      const y = sessionStorage.getItem('langScrollY');
+      if (restore && y && !window.location.hash) {
+        sessionStorage.removeItem('langScrollRestore');
+        sessionStorage.removeItem('langScrollY');
+        window.requestAnimationFrame(() => {
+          window.scrollTo(0, Number(y));
+        });
+      }
+    });
+
     function closeLangMenu() {
       if (!langToggle || !langMenu || !langBackdrop) return;
       langMenu.hidden = true;
@@ -1687,7 +1699,21 @@
       langBackdrop.addEventListener('click', closeLangMenu);
 
       langMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeLangMenu);
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const href = link.getAttribute('href');
+          if (!href) return;
+          const currentHash = window.location.hash;
+          if (currentHash && !href.includes('#')) {
+            sessionStorage.removeItem('langScrollRestore');
+            sessionStorage.removeItem('langScrollY');
+            window.location.href = href + currentHash;
+            return;
+          }
+          sessionStorage.setItem('langScrollRestore', '1');
+          sessionStorage.setItem('langScrollY', String(window.scrollY));
+          window.location.href = href;
+        });
       });
     }
 
