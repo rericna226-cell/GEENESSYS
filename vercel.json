@@ -1,0 +1,155 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/home",
+      "permanent": false
+    },
+    {
+      "source": "/index.html",
+      "destination": "/home",
+      "permanent": false
+    },
+    {
+      "source": "/index-en.html",
+      "destination": "/home-en",
+      "permanent": false
+    },
+    {
+      "source": "/core.html",
+      "destination": "/core",
+      "permanent": false
+    },
+    {
+      "source": "/core-en.html",
+      "destination": "/core-en",
+      "permanent": false
+    },
+    {
+      "source": "/dee-universe.html",
+      "destination": "/dee-universe",
+      "permanent": false
+    },
+    {
+      "source": "/dee-universe-en.html",
+      "destination": "/dee-universe-en",
+      "permanent": false
+    },
+    {
+      "source": "/drones.html",
+      "destination": "/drones",
+      "permanent": false
+    },
+    {
+      "source": "/drones-en.html",
+      "destination": "/drones-en",
+      "permanent": false
+    },
+    {
+      "source": "/op-ai.html",
+      "destination": "/op-ai",
+      "permanent": false
+    },
+    {
+      "source": "/op-ai-en.html",
+      "destination": "/op-ai-en",
+      "permanent": false
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-en.html",
+      "destination": "/privacy-en",
+      "permanent": false
+    },
+    {
+      "source": "/technology.html",
+      "destination": "/technology",
+      "permanent": false
+    },
+    {
+      "source": "/technology-en.html",
+      "destination": "/technology-en",
+      "permanent": false
+    },
+    {
+      "source": "/technology-vision.html",
+      "destination": "/technology-vision",
+      "permanent": false
+    },
+    {
+      "source": "/technology-vision-en.html",
+      "destination": "/technology-vision-en",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/home",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/home-en",
+      "destination": "/index-en.html"
+    },
+    {
+      "source": "/core",
+      "destination": "/core.html"
+    },
+    {
+      "source": "/core-en",
+      "destination": "/core-en.html"
+    },
+    {
+      "source": "/dee-universe",
+      "destination": "/dee-universe.html"
+    },
+    {
+      "source": "/dee-universe-en",
+      "destination": "/dee-universe-en.html"
+    },
+    {
+      "source": "/drones",
+      "destination": "/drones.html"
+    },
+    {
+      "source": "/drones-en",
+      "destination": "/drones-en.html"
+    },
+    {
+      "source": "/op-ai",
+      "destination": "/op-ai.html"
+    },
+    {
+      "source": "/op-ai-en",
+      "destination": "/op-ai-en.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/privacy-en",
+      "destination": "/privacy-en.html"
+    },
+    {
+      "source": "/technology",
+      "destination": "/technology.html"
+    },
+    {
+      "source": "/technology-en",
+      "destination": "/technology-en.html"
+    },
+    {
+      "source": "/technology-vision",
+      "destination": "/technology-vision.html"
+    },
+    {
+      "source": "/technology-vision-en",
+      "destination": "/technology-vision-en.html"
+    }
+  ]
+}

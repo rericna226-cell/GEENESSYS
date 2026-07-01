@@ -596,8 +596,26 @@
       backdrop-filter: blur(18px);
       padding: 14px;
       display: grid;
-      gap: 8px;
+      gap: 12px;
       box-shadow: 0 30px 110px rgba(0,0,0,.55);
+    }
+
+    .mobile-section {
+      display: grid;
+      gap: 8px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding: 10px;
+    }
+
+    .mobile-title {
+      padding: 6px 10px 2px;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: rgba(237,246,255,.72);
     }
 
     .mobile-menu a {
@@ -1252,17 +1270,33 @@
   <div class="mobile-backdrop" hidden></div>
 
   <nav class="mobile-menu" hidden aria-label="Menú móvil">
-    <a href="index.html#contact">Contacto</a>
-    <a href="index.html#solutions">Soluciones</a>
-    <a href="index.html#industries">Industrias</a>
-    <a href="index.html#evaluation">Evaluación</a>
-    <a href="core.html">GEENESSYS 7.1.1.</a>
-    <a href="drones.html">GEENESSYS Drones</a>
-    <a href="op-ai.html">GEENESSYS OP AI</a>
-    <a href="dee-universe.html">DEE Universe</a>
-    <a href="technology.html">Arquitectura</a>
-    <a href="technology-vision.html">Technology Vision</a>
-    <a href="privacy.html">Aviso de privacidad</a>
+    <div class="mobile-section">
+      <div class="mobile-title">Plataforma</div>
+      <a href="index.html">GEENESSYS Platform</a>
+      <a href="index.html#solutions">Soluciones</a>
+      <a href="index.html#industries">Industrias</a>
+      <a href="index.html#evaluation">Evaluación</a>
+      <a href="index.html#contact">Contacto</a>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-title">Proyectos</div>
+      <a href="core.html">GEENESSYS 7.1.1.</a>
+      <a href="drones.html">GEENESSYS Drones</a>
+      <a href="op-ai.html">GEENESSYS OP AI</a>
+      <a href="dee-universe.html">DEE Universe</a>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-title">Tecnología</div>
+      <a href="technology.html">Arquitectura</a>
+      <a href="technology-vision.html">Technology Vision</a>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-title">Legal</div>
+      <a href="privacy.html">Aviso de privacidad</a>
+    </div>
   </nav>
 
   <main>
