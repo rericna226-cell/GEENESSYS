@@ -597,6 +597,10 @@
       padding: 14px;
       display: grid;
       gap: 12px;
+      max-height: calc(100vh - 104px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
       box-shadow: 0 30px 110px rgba(0,0,0,.55);
     }
 
@@ -616,6 +620,11 @@
       text-transform: uppercase;
       font-weight: 800;
       color: rgba(237,246,255,.72);
+    }
+
+    .mobile-direct-link {
+      font-weight: 700;
+      background: rgba(255,255,255,.06) !important;
     }
 
     .mobile-menu a {
@@ -1268,17 +1277,11 @@
   <div class="mobile-backdrop" hidden></div>
 
   <nav class="mobile-menu" hidden aria-label="Mobile menu">
-    <div class="mobile-section">
-      <div class="mobile-title">Platform</div>
-      <a href="index-en.html">GEENESSYS Platform</a>
-      <a href="index-en.html#solutions">Solutions</a>
-      <a href="index-en.html#industries">Industries</a>
-      <a href="index-en.html#evaluation">Evaluation</a>
-      <a href="index-en.html#contact">Contact</a>
-    </div>
+    <a class="mobile-direct-link" href="index-en.html#contact">Contact</a>
 
     <div class="mobile-section">
       <div class="mobile-title">Projects</div>
+      <a href="index-en.html">GEENESSYS Platform</a>
       <a href="core-en.html">GEENESSYS 7.1.1.</a>
       <a href="drones-en.html">GEENESSYS Drones</a>
       <a href="op-ai-en.html">GEENESSYS OP AI</a>
