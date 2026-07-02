@@ -1663,16 +1663,56 @@
     const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
     let megaCloseTimer;
 
+    function getLangTargetPageKey(href) {
+      const targetUrl = new URL(href, window.location.href);
+      return targetUrl.pathname + targetUrl.search;
+    }
+
+    function clearLangScrollRestore() {
+      sessionStorage.removeItem('langScrollRestore');
+      sessionStorage.removeItem('langScrollY');
+      sessionStorage.removeItem('langScrollTarget');
+    }
+
+    function navigateWithLanguageState(href) {
+      const targetUrl = new URL(href, window.location.href);
+      const currentHash = window.location.hash;
+
+      if (currentHash) {
+        clearLangScrollRestore();
+        targetUrl.hash = currentHash;
+        window.location.href = targetUrl.toString();
+        return;
+      }
+
+      sessionStorage.setItem('langScrollRestore', '1');
+      sessionStorage.setItem('langScrollY', String(window.scrollY));
+      sessionStorage.setItem('langScrollTarget', getLangTargetPageKey(href));
+      targetUrl.hash = '';
+      window.location.href = targetUrl.toString();
+    }
+
     window.addEventListener('load', () => {
       const restore = sessionStorage.getItem('langScrollRestore') === '1';
       const y = sessionStorage.getItem('langScrollY');
-      if (restore && y && !window.location.hash) {
-        sessionStorage.removeItem('langScrollRestore');
-        sessionStorage.removeItem('langScrollY');
+      const target = sessionStorage.getItem('langScrollTarget');
+      const currentPage = window.location.pathname + window.location.search;
+
+      if (!restore || !y) return;
+
+      if (window.location.hash) {
+        clearLangScrollRestore();
+        return;
+      }
+
+      if (target && target !== currentPage) return;
+
+      clearLangScrollRestore();
+      window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
           window.scrollTo(0, Number(y));
         });
-      }
+      });
     });
 
     function closeLangMenu() {
@@ -1757,16 +1797,8 @@
           event.preventDefault();
           const href = link.getAttribute('href');
           if (!href) return;
-          const currentHash = window.location.hash;
-          if (currentHash && !href.includes('#')) {
-            sessionStorage.removeItem('langScrollRestore');
-            sessionStorage.removeItem('langScrollY');
-            window.location.href = href + currentHash;
-            return;
-          }
-          sessionStorage.setItem('langScrollRestore', '1');
-          sessionStorage.setItem('langScrollY', String(window.scrollY));
-          window.location.href = href;
+          closeLangMenu();
+          navigateWithLanguageState(href);
         });
       });
     }
