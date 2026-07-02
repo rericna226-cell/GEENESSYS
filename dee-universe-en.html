@@ -1677,9 +1677,13 @@
     const megaBackdrop = document.querySelector('.mega-backdrop');
     const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
     let megaCloseTimer;
+    let langScrollRestoreHandled = false;
+    const LANG_RESTORE_PARAM_KEYS = ['langRestore', 'langY', 'langSectionId', 'langSectionOffset'];
 
     function getLangTargetPageKey(href) {
       const targetUrl = new URL(href, window.location.href);
+      LANG_RESTORE_PARAM_KEYS.forEach((key) => targetUrl.searchParams.delete(key));
+      targetUrl.hash = '';
       return targetUrl.pathname + targetUrl.search;
     }
 
@@ -1704,6 +1708,42 @@
       };
     }
 
+    function getLangRestoreStateFromUrl() {
+      const currentUrl = new URL(window.location.href);
+      return {
+        restore: currentUrl.searchParams.get('langRestore') === '1',
+        y: Number(currentUrl.searchParams.get('langY')),
+        target: getLangTargetPageKey(currentUrl.toString()),
+        sectionId: currentUrl.searchParams.get('langSectionId') || '',
+        sectionOffset: Number(currentUrl.searchParams.get('langSectionOffset') || '0')
+      };
+    }
+
+    function getLangRestoreStateFromSession() {
+      return {
+        restore: sessionStorage.getItem('langScrollRestore') === '1',
+        y: Number(sessionStorage.getItem('langScrollY')),
+        target: sessionStorage.getItem('langScrollTarget'),
+        sectionId: sessionStorage.getItem('langScrollSectionId') || '',
+        sectionOffset: Number(sessionStorage.getItem('langScrollSectionOffset') || '0')
+      };
+    }
+
+    function clearLangRestoreParamsFromUrl() {
+      const currentUrl = new URL(window.location.href);
+      let hasRestoreParams = false;
+
+      LANG_RESTORE_PARAM_KEYS.forEach((key) => {
+        if (currentUrl.searchParams.has(key)) {
+          currentUrl.searchParams.delete(key);
+          hasRestoreParams = true;
+        }
+      });
+
+      if (!hasRestoreParams) return;
+      window.history.replaceState(null, '', currentUrl.toString());
+    }
+
     function clearLangScrollRestore() {
       sessionStorage.removeItem('langScrollRestore');
       sessionStorage.removeItem('langScrollY');
@@ -1714,26 +1754,25 @@
 
     function navigateWithLanguageState(href) {
       const targetUrl = new URL(href, window.location.href);
-      const currentHash = window.location.hash;
-
-      if (currentHash) {
-        clearLangScrollRestore();
-        targetUrl.hash = currentHash;
-        window.location.href = targetUrl.toString();
-        return;
-      }
-
       const visibleSection = getVisibleLangSectionState();
+
       sessionStorage.setItem('langScrollRestore', '1');
       sessionStorage.setItem('langScrollY', String(window.scrollY));
-      sessionStorage.setItem('langScrollTarget', getLangTargetPageKey(href));
+      sessionStorage.setItem('langScrollTarget', getLangTargetPageKey(targetUrl.toString()));
+
+      targetUrl.searchParams.set('langRestore', '1');
+      targetUrl.searchParams.set('langY', String(window.scrollY));
 
       if (visibleSection) {
         sessionStorage.setItem('langScrollSectionId', visibleSection.id);
         sessionStorage.setItem('langScrollSectionOffset', String(visibleSection.offset));
+        targetUrl.searchParams.set('langSectionId', visibleSection.id);
+        targetUrl.searchParams.set('langSectionOffset', String(visibleSection.offset));
       } else {
         sessionStorage.removeItem('langScrollSectionId');
         sessionStorage.removeItem('langScrollSectionOffset');
+        targetUrl.searchParams.delete('langSectionId');
+        targetUrl.searchParams.delete('langSectionOffset');
       }
 
       targetUrl.hash = '';
@@ -1741,30 +1780,30 @@
     }
 
     function restoreLangScrollPosition() {
-      const restore = sessionStorage.getItem('langScrollRestore') === '1';
-      const y = Number(sessionStorage.getItem('langScrollY'));
-      const target = sessionStorage.getItem('langScrollTarget');
-      const sectionId = sessionStorage.getItem('langScrollSectionId');
-      const sectionOffset = Number(sessionStorage.getItem('langScrollSectionOffset') || '0');
-      const currentPage = window.location.pathname + window.location.search;
+      if (langScrollRestoreHandled) return;
 
-      if (!restore || Number.isNaN(y)) return;
+      const urlState = getLangRestoreStateFromUrl();
+      const sessionState = getLangRestoreStateFromSession();
+      const restoreState = urlState.restore ? urlState : sessionState;
+      const currentPage = getLangTargetPageKey(window.location.href);
 
-      if (window.location.hash) {
+      if (!restoreState.restore || Number.isNaN(restoreState.y)) return;
+      if (!urlState.restore && window.location.hash) {
         clearLangScrollRestore();
         return;
       }
+      if (!urlState.restore && restoreState.target && restoreState.target !== currentPage) return;
 
-      if (target && target !== currentPage) return;
+      langScrollRestoreHandled = true;
 
       const applyRestore = () => {
-        let targetY = y;
+        let targetY = restoreState.y;
 
-        if (sectionId) {
-          const targetSection = document.getElementById(sectionId);
+        if (restoreState.sectionId) {
+          const targetSection = document.getElementById(restoreState.sectionId);
           if (targetSection) {
             const sectionTop = window.scrollY + targetSection.getBoundingClientRect().top;
-            targetY = Math.max(0, sectionTop + (Number.isNaN(sectionOffset) ? 0 : sectionOffset));
+            targetY = Math.max(0, sectionTop + (Number.isNaN(restoreState.sectionOffset) ? 0 : restoreState.sectionOffset));
           }
         }
 
@@ -1772,6 +1811,7 @@
       };
 
       clearLangScrollRestore();
+      clearLangRestoreParamsFromUrl();
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(applyRestore);
       });
