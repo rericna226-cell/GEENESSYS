@@ -2579,6 +2579,8 @@
           status.innerHTML = "";
         }
 
+        const formData = new FormData(form);
+
         form.classList.add("is-submitting");
         fields.forEach((field) => {
           field.disabled = true;
@@ -2587,8 +2589,6 @@
         if (button) {
           button.textContent = "Sending...";
         }
-
-        const formData = new FormData(form);
 
         try {
           const response = await fetch("/api/contact", {
@@ -2616,8 +2616,7 @@
           form.reset();
           setStatus("success", "Message sent successfully. We will respond within 24 to 48 business hours.");
         } catch (error) {
-          const detail = error instanceof Error && error.message ? " Detail: " + error.message : "";
-          setStatus("error", "There was a problem sending your message. Please try again or email us at info@geenessys.com." + detail);
+          setStatus("error", "There was a problem sending your message. Please check that all required fields are complete or email us at info@geenessys.com.");
         } finally {
           form.classList.remove("is-submitting");
           fields.forEach((field) => {
