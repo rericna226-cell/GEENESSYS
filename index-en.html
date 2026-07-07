@@ -1415,15 +1415,21 @@
     }
 
     .phone-group {
-      display: grid;
-      grid-template-columns: minmax(190px, 240px) 1fr;
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       align-items: center;
     }
 
     .phone-code {
-      min-width: 0;
+      flex: 0 1 220px;
+      min-width: 180px;
       white-space: nowrap;
+    }
+
+    .phone-group input {
+      flex: 1 1 220px;
+      min-width: 0;
     }
 
     .field input,
