@@ -1414,6 +1414,13 @@
       letter-spacing: .02em;
     }
 
+    .field-help {
+      margin-top: -2px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #4a5a70;
+    }
+
     .field input,
     .field textarea,
     .field select {
@@ -2143,7 +2150,8 @@
 
               <div class="field">
                 <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" placeholder="+__ ___ ___ ____" />
+                <div class="field-help">Include country code. Example: <strong>+52</strong> Mexico, <strong>+1</strong> US/Canada, <strong>+34</strong> Spain.</div>
+                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+52 222 123 4567" />
               </div>
             </div>
 
