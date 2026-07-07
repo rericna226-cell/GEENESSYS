@@ -18,12 +18,42 @@ function formatMessage(value) {
   return escapeHtml(value.trim()).replace(/\n/g, "<br>");
 }
 
+// #region debug-point A:report-debug
+function reportDebug(hypothesisId, location, msg, data) {
+  const payload = {
+    sessionId: "geenessy-form-submit",
+    runId: "pre-fix",
+    hypothesisId,
+    location,
+    msg: `[DEBUG] ${msg}`,
+    data,
+    ts: Date.now(),
+  };
+
+  fetch("http://127.0.0.1:7777/event", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  }).catch(() => {});
+}
+// #endregion
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
+    // #region debug-point B:method-not-allowed
+    reportDebug("A", "api/contact.js:37", "Rejected non-POST request", {
+      method: req.method,
+    });
+    // #endregion
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
+    // #region debug-point C:request-entry
+    reportDebug("A", "api/contact.js:45", "API request received", {
+      hasBody: Boolean(req.body),
+      contentType: req.headers["content-type"] || "",
+    });
+    // #endregion
     const {
       name,
       company,
@@ -35,7 +65,27 @@ export default async function handler(req, res) {
     } = req.body || {};
 
     if (!name || !company || !email || !sector || !interest || !message) {
-      return res.status(400).json({ error: "Missing required fields" });
+      // #region debug-point D:missing-fields
+      reportDebug("B", "api/contact.js:61", "Missing required fields", {
+        hasName: Boolean(name),
+        hasCompany: Boolean(company),
+        hasEmail: Boolean(email),
+        hasSector: Boolean(sector),
+        hasInterest: Boolean(interest),
+        hasMessage: Boolean(message),
+      });
+      // #endregion
+      return res.status(400).json({ error: "Missing required fields", step: "validation" });
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      // #region debug-point E:missing-api-key
+      reportDebug("C", "api/contact.js:74", "RESEND_API_KEY is missing", {});
+      // #endregion
+      return res.status(500).json({
+        error: "RESEND_API_KEY is missing in the environment.",
+        step: "resend-config",
+      });
     }
 
     const safeName = formatField(name);
@@ -85,10 +135,16 @@ export default async function handler(req, res) {
 
     if (!notify.ok) {
       const error = await notify.text();
-      return res.status(500).json({ error });
+      // #region debug-point F:notify-failed
+      reportDebug("D", "api/contact.js:118", "Primary Resend notification failed", {
+        status: notify.status,
+        error,
+      });
+      // #endregion
+      return res.status(500).json({ error, step: "resend-notify" });
     }
 
-    await fetch("https://api.resend.com/emails", {
+    const autoReply = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
@@ -102,8 +158,35 @@ export default async function handler(req, res) {
       }),
     });
 
+    if (!autoReply.ok) {
+      const error = await autoReply.text();
+      // #region debug-point G:auto-reply-failed
+      reportDebug("E", "api/contact.js:139", "Auto reply failed", {
+        status: autoReply.status,
+        error,
+      });
+      // #endregion
+      return res.status(500).json({ error, step: "resend-autoreply" });
+    }
+
+    // #region debug-point H:request-success
+    reportDebug("A", "api/contact.js:149", "API request completed successfully", {
+      email,
+      sector,
+      interest,
+    });
+    // #endregion
+
     return res.status(200).json({ ok: true });
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    // #region debug-point I:unexpected-error
+    reportDebug("E", "api/contact.js:157", "Unexpected handler error", {
+      message: error instanceof Error ? error.message : String(error),
+    });
+    // #endregion
+    return res.status(500).json({
+      error: error instanceof Error ? error.message : "Internal server error",
+      step: "unexpected",
+    });
   }
 }

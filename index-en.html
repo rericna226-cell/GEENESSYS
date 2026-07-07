@@ -2599,14 +2599,17 @@
             }),
           });
 
+          const result = await response.json().catch(() => ({}));
+
           if (!response.ok) {
-            throw new Error("Request failed");
+            throw new Error(result.error || ("Request failed" + (result.step ? " [" + result.step + "]" : "")));
           }
 
           form.reset();
           setStatus("success", "Message sent successfully. We will respond within 24 to 48 business hours.");
         } catch (error) {
-          setStatus("error", "There was a problem sending your message. Please try again or email us at info@geenessys.com.");
+          const detail = error instanceof Error && error.message ? " Detail: " + error.message : "";
+          setStatus("error", "There was a problem sending your message. Please try again or email us at info@geenessys.com." + detail);
         } finally {
           form.classList.remove("is-submitting");
           fields.forEach((field) => {
