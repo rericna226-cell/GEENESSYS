@@ -1441,6 +1441,15 @@
       box-shadow: 0 0 0 4px rgba(0,29,255,.08);
     }
 
+    .contact-form.is-submitting .field input,
+    .contact-form.is-submitting .field textarea,
+    .contact-form.is-submitting .field select,
+    .contact-form.is-submitting .privacy input,
+    .contact-form.is-submitting .submit {
+      opacity: .72;
+      pointer-events: none;
+    }
+
     .privacy {
       display: flex;
       gap: 10px;
@@ -1459,6 +1468,61 @@
       text-decoration: underline;
       text-underline-offset: 3px;
       font-weight: 800;
+    }
+
+    .form-status {
+      display: none;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .form-status.is-visible {
+      display: flex;
+    }
+
+    .form-status.is-success {
+      background: rgba(13, 148, 91, 0.14);
+      border: 1px solid rgba(13, 148, 91, 0.32);
+      color: #0f5132;
+    }
+
+    .form-status.is-error {
+      background: rgba(220, 38, 38, 0.12);
+      border: 1px solid rgba(220, 38, 38, 0.28);
+      color: #8a1c1c;
+    }
+
+    .form-status-icon {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .form-status.is-success .form-status-icon {
+      background: rgba(13, 148, 91, 0.18);
+      color: #0f5132;
+    }
+
+    .form-status.is-error .form-status-icon {
+      background: rgba(220, 38, 38, 0.16);
+      color: #8a1c1c;
+    }
+
+    .form-status-text {
+      flex: 1 1 auto;
     }
 
     .submit {
@@ -2058,7 +2122,7 @@
             the best evaluation path.
           </p>
 
-          <form class="contact-form" action="#" method="post">
+          <form id="contact-form" class="contact-form">
             <div class="form-row">
               <div class="field">
                 <label for="name">Full name</label>
@@ -2134,6 +2198,8 @@
                 the processing of my personal data in accordance with the LFPDPPP.
               </span>
             </label>
+
+            <div class="form-status" aria-live="polite"></div>
 
             <button class="submit" type="submit">Request technical evaluation</button>
           </form>
@@ -2480,6 +2546,77 @@
         industryTitle.textContent = button.dataset.title;
         industryCopy.textContent = button.dataset.copy;
         panelVisual.dataset.visual = button.dataset.visual;
+      });
+    });
+  </script>
+  <script>
+    document.querySelectorAll("form").forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const button = form.querySelector("button[type='submit']");
+        const status = form.querySelector(".form-status");
+        const fields = form.querySelectorAll("input, textarea, select, button");
+        const originalText = button ? button.textContent : "";
+
+        function setStatus(type, message) {
+          if (!status) return;
+          const icon = type === "success" ? "✓" : "!";
+          status.className = "form-status is-visible " + (type === "success" ? "is-success" : "is-error");
+          status.innerHTML = '<span class="form-status-icon" aria-hidden="true">' + icon + '</span><span class="form-status-text">' + message + '</span>';
+        }
+
+        if (status) {
+          status.className = "form-status";
+          status.innerHTML = "";
+        }
+
+        form.classList.add("is-submitting");
+        fields.forEach((field) => {
+          field.disabled = true;
+        });
+
+        if (button) {
+          button.textContent = "Sending...";
+        }
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.get("name"),
+              email: formData.get("email"),
+              company: formData.get("company"),
+              phone: formData.get("phone"),
+              sector: formData.get("sector"),
+              interest: formData.get("interest"),
+              message: formData.get("message"),
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Request failed");
+          }
+
+          form.reset();
+          setStatus("success", "Message sent successfully. We will respond within 24 to 48 business hours.");
+        } catch (error) {
+          setStatus("error", "There was a problem sending your message. Please try again or email us at info@geenessys.com.");
+        } finally {
+          form.classList.remove("is-submitting");
+          fields.forEach((field) => {
+            field.disabled = false;
+          });
+
+          if (button) {
+            button.textContent = originalText;
+          }
+        }
       });
     });
   </script>
