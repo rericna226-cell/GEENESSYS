@@ -1441,12 +1441,13 @@
 
     .phone-group {
       display: grid;
-      grid-template-columns: 132px 1fr;
+      grid-template-columns: minmax(190px, 240px) 1fr;
       gap: 10px;
       align-items: center;
     }
 
     .phone-code {
+      min-width: 0;
       white-space: nowrap;
     }
 
@@ -1743,6 +1744,10 @@
       }
 
       .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-group {
         grid-template-columns: 1fr;
       }
 
@@ -2182,16 +2187,97 @@
                 <label for="phone">Teléfono</label>
                 <div class="phone-group">
                   <select id="phoneCode" name="phoneCode" class="phone-code" aria-label="Lada internacional">
-                    <option value="+52">+52 México</option>
-                    <option value="+1">+1 EE. UU./Canadá</option>
-                    <option value="+34">+34 España</option>
-                    <option value="+57">+57 Colombia</option>
-                    <option value="+54">+54 Argentina</option>
-                    <option value="+51">+51 Perú</option>
-                    <option value="+56">+56 Chile</option>
-                    <option value="+593">+593 Ecuador</option>
-                    <option value="+58">+58 Venezuela</option>
-                    <option value="+55">+55 Brasil</option>
+                    <optgroup label="Norteamérica">
+                      <option value="+52">+52 México</option>
+                      <option value="+1">+1 Estados Unidos</option>
+                      <option value="+1">+1 Canadá</option>
+                    </optgroup>
+                    <optgroup label="Latinoamérica">
+                      <option value="+54">+54 Argentina</option>
+                      <option value="+591">+591 Bolivia</option>
+                      <option value="+55">+55 Brasil</option>
+                      <option value="+56">+56 Chile</option>
+                      <option value="+57">+57 Colombia</option>
+                      <option value="+506">+506 Costa Rica</option>
+                      <option value="+53">+53 Cuba</option>
+                      <option value="+593">+593 Ecuador</option>
+                      <option value="+503">+503 El Salvador</option>
+                      <option value="+502">+502 Guatemala</option>
+                      <option value="+509">+509 Haití</option>
+                      <option value="+504">+504 Honduras</option>
+                      <option value="+505">+505 Nicaragua</option>
+                      <option value="+507">+507 Panamá</option>
+                      <option value="+595">+595 Paraguay</option>
+                      <option value="+51">+51 Perú</option>
+                      <option value="+1">+1 Puerto Rico</option>
+                      <option value="+1">+1 República Dominicana</option>
+                      <option value="+598">+598 Uruguay</option>
+                      <option value="+58">+58 Venezuela</option>
+                    </optgroup>
+                    <optgroup label="Europa">
+                      <option value="+49">+49 Alemania</option>
+                      <option value="+43">+43 Austria</option>
+                      <option value="+32">+32 Bélgica</option>
+                      <option value="+359">+359 Bulgaria</option>
+                      <option value="+385">+385 Croacia</option>
+                      <option value="+45">+45 Dinamarca</option>
+                      <option value="+421">+421 Eslovaquia</option>
+                      <option value="+386">+386 Eslovenia</option>
+                      <option value="+34">+34 España</option>
+                      <option value="+372">+372 Estonia</option>
+                      <option value="+358">+358 Finlandia</option>
+                      <option value="+33">+33 Francia</option>
+                      <option value="+30">+30 Grecia</option>
+                      <option value="+36">+36 Hungría</option>
+                      <option value="+353">+353 Irlanda</option>
+                      <option value="+354">+354 Islandia</option>
+                      <option value="+39">+39 Italia</option>
+                      <option value="+371">+371 Letonia</option>
+                      <option value="+370">+370 Lituania</option>
+                      <option value="+352">+352 Luxemburgo</option>
+                      <option value="+47">+47 Noruega</option>
+                      <option value="+31">+31 Países Bajos</option>
+                      <option value="+48">+48 Polonia</option>
+                      <option value="+351">+351 Portugal</option>
+                      <option value="+44">+44 Reino Unido</option>
+                      <option value="+40">+40 Rumania</option>
+                      <option value="+381">+381 Serbia</option>
+                      <option value="+46">+46 Suecia</option>
+                      <option value="+41">+41 Suiza</option>
+                      <option value="+420">+420 Chequia</option>
+                      <option value="+380">+380 Ucrania</option>
+                    </optgroup>
+                    <optgroup label="Asia">
+                      <option value="+966">+966 Arabia Saudita</option>
+                      <option value="+971">+971 Emiratos Árabes Unidos</option>
+                      <option value="+63">+63 Filipinas</option>
+                      <option value="+852">+852 Hong Kong</option>
+                      <option value="+91">+91 India</option>
+                      <option value="+62">+62 Indonesia</option>
+                      <option value="+972">+972 Israel</option>
+                      <option value="+81">+81 Japón</option>
+                      <option value="+60">+60 Malasia</option>
+                      <option value="+92">+92 Pakistán</option>
+                      <option value="+86">+86 China</option>
+                      <option value="+65">+65 Singapur</option>
+                      <option value="+82">+82 Corea del Sur</option>
+                      <option value="+66">+66 Tailandia</option>
+                      <option value="+90">+90 Turquía</option>
+                      <option value="+84">+84 Vietnam</option>
+                    </optgroup>
+                    <optgroup label="África">
+                      <option value="+27">+27 Sudáfrica</option>
+                      <option value="+20">+20 Egipto</option>
+                      <option value="+212">+212 Marruecos</option>
+                      <option value="+234">+234 Nigeria</option>
+                      <option value="+254">+254 Kenia</option>
+                      <option value="+251">+251 Etiopía</option>
+                      <option value="+233">+233 Ghana</option>
+                    </optgroup>
+                    <optgroup label="Oceanía">
+                      <option value="+61">+61 Australia</option>
+                      <option value="+64">+64 Nueva Zelanda</option>
+                    </optgroup>
                   </select>
                   <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="222 123 4567" />
                 </div>
