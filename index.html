@@ -1439,11 +1439,15 @@
       letter-spacing: .02em;
     }
 
-    .field-help {
-      margin-top: -2px;
-      font-size: 12px;
-      line-height: 1.45;
-      color: #4a5a70;
+    .phone-group {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .phone-code {
+      white-space: nowrap;
     }
 
     .field input,
@@ -2176,8 +2180,21 @@
 
               <div class="field">
                 <label for="phone">Teléfono</label>
-                <div class="field-help">Incluye lada internacional. Ejemplo: <strong>+52</strong> México, <strong>+1</strong> EE. UU./Canadá, <strong>+34</strong> España.</div>
-                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+52 222 123 4567" />
+                <div class="phone-group">
+                  <select id="phoneCode" name="phoneCode" class="phone-code" aria-label="Lada internacional">
+                    <option value="+52">+52 México</option>
+                    <option value="+1">+1 EE. UU./Canadá</option>
+                    <option value="+34">+34 España</option>
+                    <option value="+57">+57 Colombia</option>
+                    <option value="+54">+54 Argentina</option>
+                    <option value="+51">+51 Perú</option>
+                    <option value="+56">+56 Chile</option>
+                    <option value="+593">+593 Ecuador</option>
+                    <option value="+58">+58 Venezuela</option>
+                    <option value="+55">+55 Brasil</option>
+                  </select>
+                  <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="222 123 4567" />
+                </div>
               </div>
             </div>
 
@@ -2647,7 +2664,7 @@
               name: formData.get("name"),
               email: formData.get("email"),
               company: formData.get("company"),
-              phone: formData.get("phone"),
+              phone: [formData.get("phoneCode"), formData.get("phone")].filter(Boolean).join(" "),
               sector: formData.get("sector"),
               interest: formData.get("interest"),
               message: formData.get("message"),
