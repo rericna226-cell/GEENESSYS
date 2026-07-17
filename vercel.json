@@ -6,12 +6,12 @@
       "permanent": false
     },
     {
-      "source": "/index.html",
+      "source": "/index-es.html",
       "destination": "/home",
       "permanent": false
     },
     {
-      "source": "/index-en.html",
+      "source": "/index.html",
       "destination": "/home-en",
       "permanent": false
     },
@@ -89,11 +89,11 @@
   "rewrites": [
     {
       "source": "/home",
-      "destination": "/index.html"
+      "destination": "/index-es.html"
     },
     {
       "source": "/home-en",
-      "destination": "/index-en.html"
+      "destination": "/index.html"
     },
     {
       "source": "/core",

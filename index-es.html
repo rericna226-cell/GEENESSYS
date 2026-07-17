@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,11 +10,11 @@
   <link rel="apple-touch-icon" sizes="180x180" href="favicon (2)/apple-touch-icon.png" />
   <link rel="manifest" href="favicon (2)/site.webmanifest" />
 
-  <title>GEENESSYS - Verifiable autonomy for critical systems</title>
+  <title>GEENESSYS - Autonomía verificable para sistemas críticos</title>
 
   <meta
     name="description"
-    content="GEENESSYS is a platform for verifiable autonomy across physical, digital, and enterprise systems: deterministic engines, multi-agent coordination, and auditable execution."
+    content="GEENESSYS es una plataforma de autonomía verificable para sistemas físicos, digitales y empresariales. Motores deterministas, coordinación multiagente y ejecución auditada."
   />
 
   <style>
@@ -198,7 +198,7 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,.55);
-      z-index: 55;
+      z-index: 45;
     }
 
     .mega-menu {
@@ -473,6 +473,11 @@
       border: 0;
       box-shadow: none;
       backdrop-filter: blur(10px);
+      transition: background .15s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255,255,255,.1);
     }
 
     .lang {
@@ -569,6 +574,11 @@
       cursor: pointer;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
       backdrop-filter: blur(10px);
+      transition: background .15s ease;
+    }
+
+    .nav-toggle:hover {
+      background: rgba(255,255,255,.1);
     }
 
     .nav-toggle span {
@@ -1239,6 +1249,21 @@
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 72%);
     }
 
+    .panel-overlay[data-visual="research"] {
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.88) 76%),
+        url("VISUAL/investigacion%20I%2BD_1.png");
+      background-size: auto, cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .panel-overlay[data-visual="drones"],
+    .panel-overlay[data-visual="logistica"],
+    .panel-overlay[data-visual="robotica"] {
+      background: linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.9) 72%);
+    }
+
     .industry-panel h3 {
       position: relative;
       font-size: 30px;
@@ -1743,26 +1768,26 @@
 
 <body>
   <header class="header">
-    <a class="nav-logo" href="index-en.html" aria-label="GEENESSYS Home">
+    <a class="nav-logo" href="index-es.html" aria-label="GEENESSYS Home">
       <span class="top-logo" aria-hidden="true">
         <img src="VISUAL/geenessys_logo_blanco.png" alt="">
       </span>
     </a>
 
-    <nav class="nav-links" aria-label="Main navigation">
+    <nav class="nav-links" aria-label="Navegación principal">
       <button class="nav-item-btn mega-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="megaMenu">
-        Explore
+        Explorar
       </button>
-      <a href="#contact">Contact</a>
+      <a href="#contact">Contacto</a>
     </nav>
 
     <div class="nav-actions">
-      <button class="lang" type="button" aria-label="Select language" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
-        <span>EN</span>
+      <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
+        <span>ES</span>
         <span class="lang-caret" aria-hidden="true">⌄</span>
       </button>
 
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -1773,30 +1798,31 @@
   <div class="lang-backdrop" hidden></div>
 
   <div class="lang-menu" id="langMenu" role="menu" hidden>
-    <a role="menuitem" href="index.html" lang="es">ES - Spanish</a>
-    <a role="menuitem" href="index-en.html" lang="en">EN - English</a>
+    <a role="menuitem" href="index-es.html" lang="es">ES - Español</a>
+    <a role="menuitem" href="index.html" lang="en">EN - English</a>
   </div>
 
   <div class="mega-backdrop" hidden></div>
 
-  <nav class="mega-menu" id="megaMenu" hidden aria-label="Explore">
+  <nav class="mega-menu" id="megaMenu" hidden aria-label="Explorar">
     <div class="mega-inner">
       <div class="mega-grid">
         <div class="mega-col">
-          <div class="mega-title">Projects</div>
-          <a class="mega-link" href="core-en.html">GEENESSYS 7.1.1.</a>
-          <a class="mega-link" href="drones-en.html">GEENESSYS Drones</a>
-          <a class="mega-link" href="op-ai-en.html">GEENESSYS OP AI</a>
-          <a class="mega-link" href="dee-universe-en.html">DEE Universe</a>
+          <div class="mega-title">Proyectos</div>
+          <a class="mega-link" href="index-es.html">GEENESSYS Platform</a>
+          <a class="mega-link" href="core.html">GEENESSYS 7.1.1.</a>
+          <a class="mega-link" href="op-ai.html">GEENESSYS OP AI</a>
+          <a class="mega-link" href="drones.html">GEENESSYS Drones</a>
+          <a class="mega-link" href="dee-universe.html">DEE Universe</a>
         </div>
 
         <div class="mega-col">
-          <div class="mega-title">Technology</div>
-          <a class="mega-link" href="technology-en.html">Architecture</a>
-          <a class="mega-link" href="technology-vision-en.html">Technology Vision</a>
+          <div class="mega-title">Tecnología</div>
+          <a class="mega-link" href="technology.html">Arquitectura</a>
+          <a class="mega-link" href="technology-vision.html">Technology Vision</a>
           <div class="mega-spacer"></div>
           <div class="mega-title">Legal</div>
-          <a class="mega-link" href="privacy-en.html">Privacy notice</a>
+          <a class="mega-link" href="privacy.html">Aviso de privacidad</a>
         </div>
       </div>
     </div>
@@ -1804,42 +1830,42 @@
 
   <div class="mobile-backdrop" hidden></div>
 
-  <nav class="mobile-menu" hidden aria-label="Mobile menu">
-    <a class="mobile-direct-link" href="#contact">Contact</a>
+  <nav class="mobile-menu" hidden aria-label="Menú móvil">
+    <a class="mobile-direct-link" href="#contact">Contacto</a>
 
     <div class="mobile-section">
-      <div class="mobile-title">Projects</div>
-      <a href="index-en.html">GEENESSYS Platform</a>
-      <a href="core-en.html">GEENESSYS 7.1.1.</a>
-      <a href="drones-en.html">GEENESSYS Drones</a>
-      <a href="op-ai-en.html">GEENESSYS OP AI</a>
-      <a href="dee-universe-en.html">DEE Universe</a>
+      <div class="mobile-title">Proyectos</div>
+      <a href="index-es.html">GEENESSYS Platform</a>
+      <a href="core.html">GEENESSYS 7.1.1.</a>
+      <a href="drones.html">GEENESSYS Drones</a>
+      <a href="op-ai.html">GEENESSYS OP AI</a>
+      <a href="dee-universe.html">DEE Universe</a>
     </div>
 
     <div class="mobile-section">
-      <div class="mobile-title">Technology</div>
-      <a href="technology-en.html">Architecture</a>
-      <a href="technology-vision-en.html">Technology Vision</a>
+      <div class="mobile-title">Tecnología</div>
+      <a href="technology.html">Arquitectura</a>
+      <a href="technology-vision.html">Technology Vision</a>
     </div>
 
     <div class="mobile-section">
       <div class="mobile-title">Legal</div>
-      <a href="privacy-en.html">Privacy notice</a>
+      <a href="privacy.html">Aviso de privacidad</a>
     </div>
   </nav>
 
-  <nav class="side-index" aria-label="Index">
+  <nav class="side-index" aria-label="Índice">
     <div class="side-index-head">
-      <div class="side-index-title">Index</div>
-      <button class="side-index-toggle" type="button" aria-expanded="true" aria-controls="sideIndexLinks" aria-label="Hide index">
+      <div class="side-index-title">Índice</div>
+      <button class="side-index-toggle" type="button" aria-expanded="true" aria-controls="sideIndexLinks" aria-label="Ocultar índice">
         ×
       </button>
     </div>
     <div class="side-index-links" id="sideIndexLinks">
-      <a href="#solutions">Solutions</a>
-      <a href="#industries">Industries</a>
-      <a href="#evaluation">Evaluation</a>
-      <a href="#contact">Contact</a>
+      <a href="#solutions">Soluciones</a>
+      <a href="#industries">Industrias</a>
+      <a href="#evaluation">Evaluación</a>
+      <a href="#contact">Contacto</a>
     </div>
   </nav>
 
@@ -1856,17 +1882,17 @@
           </h1>
         </div>
 
-        <div class="hero-tag">Verifiable autonomy for critical systems</div>
+        <div class="hero-tag">Autonomía verificable para sistemas críticos</div>
 
         <p class="hero-copy">
-          GEENESSYS combines deterministic engines, multi-agent coordination, and operational intelligence
-          to orchestrate drones, robots, routing, and enterprise workflows with low latency,
-          traceability, and auditable execution.
+          GEENESSYS combina motores deterministas, coordinación multiagente e inteligencia operativa
+          para coordinar drones, robots, rutas y procesos empresariales con baja latencia,
+          trazabilidad y ejecución auditada.
         </p>
 
         <div class="buttons">
-          <a class="btn primary" href="#contact">Request technical evaluation</a>
-          <a class="btn secondary" href="#solutions">View solutions</a>
+          <a class="btn primary" href="#contact">Solicitar evaluación técnica</a>
+          <a class="btn secondary" href="#solutions">Ver soluciones</a>
         </div>
       </div>
     </section>
@@ -1874,39 +1900,39 @@
     <section id="platform" class="section dark-section">
       <div class="container two-col">
         <div>
-          <div class="eyebrow">The problem</div>
-          <h2>Autonomy cannot depend on black boxes.</h2>
+          <div class="eyebrow">El problema</div>
+          <h2>La autonomía no puede depender de cajas negras.</h2>
           <p>
-            The problem is not automation alone. The real problem is automating physical, enterprise,
-            or critical systems without enough traceability, without separating understanding from execution,
-            and without deterministic mechanisms to reduce operational risk. Today, many organizations can
-            use AI to interpret or assist, but they still cannot fully trust it to operate with control,
-            audit decisions, and scale critical processes with predictability.
+            El problema no es solo automatizar. El problema es automatizar sistemas físicos,
+            empresariales o críticos sin suficiente trazabilidad, sin separar comprensión de ejecución
+            y sin mecanismos deterministas para reducir el riesgo operativo. Hoy muchas organizaciones
+            pueden usar IA para interpretar o asistir, pero todavía no pueden confiar plenamente en ella
+            para operar con control, auditar decisiones y escalar procesos críticos con previsibilidad.
           </p>
         </div>
 
         <div class="feature-list">
           <article class="feature">
-            <h3>Opaque decisions</h3>
+            <h3>Decisiones opacas</h3>
             <p>
-              Critical operations require knowing why a decision was made,
-              what data triggered it, and how it was executed.
+              La operación crítica requiere entender por qué se tomó una decisión,
+              qué datos la activaron y cómo se ejecutó.
             </p>
           </article>
 
           <article class="feature">
-            <h3>Uncertain latency</h3>
+            <h3>Latencia incierta</h3>
             <p>
-              For drones, robots, routing, or automated workflows, response time must be measurable,
-              bounded, and verifiable.
+              En drones, robots, rutas o procesos automatizados, la respuesta debe ser medible,
+              acotada y verificable.
             </p>
           </article>
 
           <article class="feature">
-            <h3>External dependency</h3>
+            <h3>Dependencia externa</h3>
             <p>
-              Cloud, GPUs, premium sensors, or closed integrations can constrain deployment,
-              cost, and operational control.
+              Cloud, GPUs, sensores premium o integraciones cerradas pueden limitar el despliegue,
+              el costo y el control operativo.
             </p>
           </article>
         </div>
@@ -1915,20 +1941,20 @@
 
     <section class="section solution">
       <div class="container">
-        <div class="eyebrow">What is GEENESSYS</div>
+        <div class="eyebrow">Qué es GEENESSYS</div>
 
-        <h2>A platform for physical and digital autonomy.</h2>
+        <h2>Una plataforma para autonomía física y digital.</h2>
 
         <p>
-          GEENESSYS is a modular platform that uses specialized engines to coordinate
-          physical systems, enterprise processes, and critical decisions. Natural language can help interpret context,
-          but execution relies on deterministic, auditable engines.
+          GEENESSYS es una plataforma modular que utiliza motores especializados para coordinar
+          sistemas físicos, procesos empresariales y decisiones críticas. El lenguaje natural puede
+          ayudar a interpretar el contexto, pero la ejecución se apoya en motores deterministas y auditables.
         </p>
 
         <div class="pill-grid">
-          <div class="pill">Perceives signals, context, and constraints</div>
-          <div class="pill">Decides with specialized engines</div>
-          <div class="pill">Executes with operational traceability</div>
+          <div class="pill">Percibe señales, contexto y restricciones</div>
+          <div class="pill">Decide con motores especializados</div>
+          <div class="pill">Ejecuta con trazabilidad operativa</div>
         </div>
       </div>
     </section>
@@ -1936,72 +1962,72 @@
     <section id="solutions" class="section cards-section">
       <div class="container">
         <div class="center">
-          <div class="eyebrow">Ecosystem</div>
-          <h2>A modular ecosystem to operate, integrate, and scale.</h2>
+          <div class="eyebrow">Ecosistema</div>
+          <h2>Un ecosistema modular para operar, integrar y escalar.</h2>
           <p>
-            A shared architecture for physical autonomy, enterprise operations,
-            multi-agent coordination, and advanced research.
+            Una arquitectura común para autonomía física, operación empresarial,
+            coordinación multiagente e investigación avanzada.
           </p>
         </div>
 
         <div class="card-grid">
-          <a class="card card-link" href="core-en.html">
+          <a class="card card-link" href="core.html">
             <div class="num">01: ENGINE / SDK</div>
             <div class="card-logo core">
               <img src="VISUAL/geenessys_logo_blanco.png" alt="GEENESSYS">
               <div class="card-version">7.1.1.</div>
             </div>
             <p>
-              Deterministic engine for 3D/4D navigation, multi-agent coordination, and critical decision-making.
+              Motor determinista para navegación 3D/4D, coordinación multiagente y decisiones críticas.
             </p>
             <ul>
               <li>Pathfinding 3D/4D</li>
-              <li>Multi-agent coordination</li>
-              <li>Integrable SDK</li>
+              <li>Coordinación multiagente</li>
+              <li>SDK integrable</li>
               <li>Edge / Omni</li>
             </ul>
           </a>
 
-          <a class="card card-link" href="drones-en.html">
+          <a class="card card-link" href="drones.html">
             <div class="num">02: PHYSICAL AUTONOMY</div>
             <div class="card-logo">
               <img src="VISUAL/GeenessysDronSinLinea.png" alt="GEENESSYS Drones">
             </div>
             <p>
-              Local autonomy for UAV/UGV, inspection, surveillance, search &amp; rescue, and operations with limited connectivity.
+              Autonomía local para UAV/UGV, inspección, vigilancia, rescate y operación con conectividad limitada.
             </p>
             <ul>
               <li>MAVLink / Pixhawk</li>
               <li>ArduPilot / PX4</li>
-              <li>Multi-layer failsafes</li>
-              <li>Multi-drone</li>
+              <li>Failsafes multicapa</li>
+              <li>Multi-dron</li>
             </ul>
           </a>
 
-          <a class="card card-link" href="op-ai-en.html">
+          <a class="card card-link" href="op-ai.html">
             <div class="num">03: ENTERPRISE AI</div>
             <div class="card-logo op-ai">
               <img src="VISUAL/GeenessysOPAISinLinea.png" alt="GEENESSYS OP AI">
             </div>
             <p>
-              Enterprise automation, semantic analysis, RPA, and auditable process execution.
+              Automatización empresarial, análisis semántico, RPA y ejecución auditada de procesos.
             </p>
             <ul>
-              <li>Validated RPA</li>
-              <li>Document analysis</li>
-              <li>Operational automation</li>
-              <li>Execution audit</li>
+              <li>RPA validado</li>
+              <li>Análisis documental</li>
+              <li>Automatización operativa</li>
+              <li>Auditoría de ejecución</li>
             </ul>
           </a>
         </div>
 
-        <a class="research-note" href="dee-universe-en.html">
+        <a class="research-note" href="dee-universe.html">
           <div class="research-note-logo">
             <img src="VISUAL/DEEUniverseLOGOBlanco.png" alt="DEE Universe">
           </div>
           <div class="research-note-copy">
             <div class="research-note-kicker">Research</div>
-            <p><strong>GEENESSYS DEE Universe</strong> explores discrete simulation, 3D cellular automata, and emergent models for labs, academia, and R&amp;D.</p>
+            <p><strong>GEENESSYS DEE Universe</strong> explora simulación discreta, autómatas celulares 3D y modelos emergentistas para laboratorios, academia e I+D.</p>
           </div>
         </a>
       </div>
@@ -2009,60 +2035,60 @@
 
     <section id="industries" class="section light-section">
       <div class="container">
-        <div class="eyebrow">Industries</div>
+        <div class="eyebrow">Industrias</div>
 
-        <h2>Designed for sectors where failure is costly.</h2>
+        <h2>Diseñado para sectores donde el error cuesta.</h2>
 
         <p>
-          GEENESSYS can be deployed as a technical pilot, SDK, local server, or custom solution,
-          depending on the use case.
+          GEENESSYS puede implementarse como piloto técnico, SDK, servidor local o solución personalizada
+          según el caso de uso.
         </p>
 
         <div class="industry-list">
           <div class="industry-tabs">
-            <button class="industry active" type="button" data-title="Drones &amp; Inspection"
-              data-copy="Local autonomy for infrastructure, surveillance, search &amp; rescue, line inspection, perimeter monitoring, and field operations."
+            <button class="industry active" type="button" data-title="Drones e inspección"
+              data-copy="Autonomía local para infraestructura, vigilancia, búsqueda y rescate, inspección de líneas, perímetros y operación en campo."
               data-visual="drones">
               <span class="ind-icon"><img src="Icons/Droneseinspección.png" alt=""></span>
-              Drones &amp; Inspection
+              Drones e inspección
             </button>
 
-            <button class="industry" type="button" data-title="Logistics &amp; Warehouses"
-              data-copy="Coordination of routes, fleets, AGVs, smart inventory, and warehouse operating systems for high-density environments."
+            <button class="industry" type="button" data-title="Logística y almacenes"
+              data-copy="Coordinación de rutas, flotas, AGV, inventario inteligente y sistemas operativos en almacenes de alta densidad."
               data-visual="logistica">
               <span class="ind-icon"><img src="Icons/Logísticayalmacenes.png" alt=""></span>
-              Logistics &amp; Warehouses
+              Logística y almacenes
             </button>
 
-            <button class="industry" type="button" data-title="Manufacturing &amp; Robotics"
-              data-copy="Control of physical processes, robots, robotic arms, production flows, and traceable decisions in industrial environments."
+            <button class="industry" type="button" data-title="Manufactura y robótica"
+              data-copy="Control de procesos físicos, robots, brazos, flujos de producción y decisiones trazables en entornos industriales."
               data-visual="robotica">
               <span class="ind-icon"><img src="Icons/Manufacturayrobótica.png" alt=""></span>
-              Manufacturing &amp; Robotics
+              Manufactura y robótica
             </button>
 
-            <button class="industry" type="button" data-title="Enterprise Operations"
-              data-copy="Automation, document analysis, validated RPA, auditable execution, and coordination of internal workflows."
+            <button class="industry" type="button" data-title="Operaciones empresariales"
+              data-copy="Automatización, análisis documental, RPA validado, ejecución auditada y coordinación de procesos internos."
               data-visual="empresa">
               <span class="ind-icon"><img src="Icons/Operacionesempresariales.png" alt=""></span>
-              Enterprise Operations
+              Operaciones empresariales
             </button>
 
-            <button class="industry" type="button" data-title="Research &amp; R&amp;D"
-              data-copy="Simulation, experimentation, discrete models, hypothesis validation, and joint technology development."
+            <button class="industry" type="button" data-title="Investigación e I+D"
+              data-copy="Simulación, experimentación, modelos discretos, validación de hipótesis y desarrollo tecnológico conjunto."
               data-visual="research">
               <span class="ind-icon"><img src="Icons/investigacion-id.png" alt=""></span>
-              Research &amp; R&amp;D
+              Investigación e I+D
             </button>
           </div>
 
           <div class="industry-panel">
             <div class="panel-visual" data-visual="drones"></div>
-            <div class="panel-overlay"></div>
-            <h3 id="industry-title">Drones &amp; Inspection</h3>
+            <div class="panel-overlay" data-visual="drones"></div>
+            <h3 id="industry-title">Drones e inspección</h3>
             <p id="industry-copy">
-              Local autonomy for infrastructure, surveillance, search &amp; rescue, line inspection,
-              perimeter monitoring, and field operations.
+              Autonomía local para infraestructura, vigilancia, búsqueda y rescate, inspección de líneas,
+              perímetros y operación en campo.
             </p>
           </div>
         </div>
@@ -2072,38 +2098,38 @@
     <section id="evaluation" class="section integration-process">
       <div class="container integration-shell">
         <div class="integration-intro">
-          <div class="eyebrow">Evaluation process</div>
+          <div class="eyebrow">Proceso de evaluación</div>
 
-          <h2>First we understand the case. Then we define the structure.</h2>
+          <h2>Primero entendemos el caso. Después definimos la estructura.</h2>
 
           <p>
-            GEENESSYS is not sold as a single commercial mode. Each conversation starts by evaluating
-            the use case, the operating environment, strategic priority, and the level of technical access required.
+            GEENESSYS no parte de una modalidad comercial única. Cada conversación inicia evaluando
+            el caso de uso, el entorno operativo, la prioridad estratégica y el nivel de acceso técnico requerido.
           </p>
         </div>
 
         <div class="integration-flow">
           <article class="integration-step">
-            <h3>Technical &amp; strategic diagnosis</h3>
+            <h3>Diagnóstico técnico y estratégico</h3>
             <p>
-              We analyze the use case, constraints, hardware, operating environment,
-              performance targets, and integration options.
+              Analizamos caso de uso, restricciones, hardware, entorno operativo,
+              objetivos de rendimiento e integración potencial.
             </p>
           </article>
 
           <article class="integration-step">
-            <h3>NDA-based evaluation</h3>
+            <h3>Evaluación bajo NDA</h3>
             <p>
-              We share technical information progressively with minimum necessary disclosure,
-              document traceability, and access control.
+              Compartimos información técnica de forma progresiva, con mínima divulgación necesaria,
+              trazabilidad documental y control de acceso.
             </p>
           </article>
 
           <article class="integration-step">
-            <h3>Commercial structure</h3>
+            <h3>Estructura comercial</h3>
             <p>
-              We define whether the best path is an SDK license, a pilot, a technology integration,
-              co-development, a partnership, or a hybrid structure.
+              Definimos si el mejor camino es licencia SDK, piloto, integración tecnológica,
+              desarrollo conjunto, partnership o una estructura híbrida.
             </p>
           </article>
         </div>
@@ -2113,63 +2139,63 @@
     <section id="contact" class="section cta">
       <div class="cta-box">
         <div class="cta-copy">
-          <div class="eyebrow">Contact</div>
+          <div class="eyebrow">Contacto</div>
 
-          <h2>Request a technical evaluation.</h2>
+          <h2>Solicita una evaluación técnica.</h2>
 
           <p>
-            Tell us what you need to automate, coordinate, or validate. We will review whether GEENESSYS
-            fits as a technical pilot, SDK, local server, or a custom integration.
+            Cuéntanos qué necesitas automatizar, coordinar o validar. Revisaremos si GEENESSYS
+            puede aplicarse como piloto técnico, SDK, servidor local o integración personalizada.
           </p>
 
           <div class="cta-points">
-            <div><span></span> Initial use-case diagnosis</div>
-            <div><span></span> Progressive technical access under NDA</div>
-            <div><span></span> License, pilot, integration, or partnership</div>
+            <div><span></span> Diagnóstico inicial del caso de uso</div>
+            <div><span></span> Acceso técnico progresivo bajo NDA</div>
+            <div><span></span> Licencia, piloto, integración o partnership</div>
           </div>
         </div>
 
         <div class="cta-form-card">
-          <h2>Technical evaluation</h2>
+          <h2>Evaluación técnica</h2>
 
           <p>
-            Share the basic project information. The team will review the case and define
-            the best evaluation path.
+            Comparte la información básica del proyecto. El equipo revisará el caso y definirá
+            la mejor ruta de evaluación.
           </p>
 
           <form id="contact-form" class="contact-form">
             <div class="form-row">
               <div class="field">
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" placeholder="First and last name" required />
+                <label for="name">Nombre completo</label>
+                <input id="name" name="name" type="text" placeholder="Nombre y apellido" required />
               </div>
 
               <div class="field">
-                <label for="company">Company / institution</label>
-                <input id="company" name="company" type="text" placeholder="Company name" required />
+                <label for="company">Empresa / institución</label>
+                <input id="company" name="company" type="text" placeholder="Nombre de la empresa" required />
               </div>
             </div>
 
             <div class="form-row">
               <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="email@company.com" required />
+                <label for="email">Correo electrónico</label>
+                <input id="email" name="email" type="email" placeholder="correo@empresa.com" required />
               </div>
             </div>
 
             <div class="field">
-              <label for="phone">Phone</label>
+              <label for="phone">Teléfono</label>
               <div class="phone-group">
-                <select id="phoneCode" name="phoneCode" class="phone-code" aria-label="Country code">
-                  <optgroup label="North America">
-                    <option value="+52">+52 Mexico</option>
-                    <option value="+1">+1 United States</option>
-                    <option value="+1">+1 Canada</option>
+                <select id="phoneCode" name="phoneCode" class="phone-code" aria-label="Lada internacional">
+                  <optgroup label="Norteamérica">
+                    <option value="+52">+52 México</option>
+                    <option value="+1">+1 Estados Unidos</option>
+                    <option value="+1">+1 Canadá</option>
                   </optgroup>
-                  <optgroup label="Latin America">
+                  <optgroup label="Latinoamérica">
                     <option value="+54">+54 Argentina</option>
                     <option value="+591">+591 Bolivia</option>
-                    <option value="+55">+55 Brazil</option>
+                    <option value="+55">+55 Brasil</option>
                     <option value="+56">+56 Chile</option>
                     <option value="+57">+57 Colombia</option>
                     <option value="+506">+506 Costa Rica</option>
@@ -2177,80 +2203,80 @@
                     <option value="+593">+593 Ecuador</option>
                     <option value="+503">+503 El Salvador</option>
                     <option value="+502">+502 Guatemala</option>
-                    <option value="+509">+509 Haiti</option>
+                    <option value="+509">+509 Haití</option>
                     <option value="+504">+504 Honduras</option>
                     <option value="+505">+505 Nicaragua</option>
-                    <option value="+507">+507 Panama</option>
+                    <option value="+507">+507 Panamá</option>
                     <option value="+595">+595 Paraguay</option>
-                    <option value="+51">+51 Peru</option>
+                    <option value="+51">+51 Perú</option>
                     <option value="+1">+1 Puerto Rico</option>
-                    <option value="+1">+1 Dominican Republic</option>
+                    <option value="+1">+1 República Dominicana</option>
                     <option value="+598">+598 Uruguay</option>
                     <option value="+58">+58 Venezuela</option>
                   </optgroup>
-                  <optgroup label="Europe">
-                    <option value="+49">+49 Germany</option>
+                  <optgroup label="Europa">
+                    <option value="+49">+49 Alemania</option>
                     <option value="+43">+43 Austria</option>
-                    <option value="+32">+32 Belgium</option>
+                    <option value="+32">+32 Bélgica</option>
                     <option value="+359">+359 Bulgaria</option>
-                    <option value="+385">+385 Croatia</option>
-                    <option value="+45">+45 Denmark</option>
-                    <option value="+421">+421 Slovakia</option>
-                    <option value="+386">+386 Slovenia</option>
-                    <option value="+34">+34 Spain</option>
+                    <option value="+385">+385 Croacia</option>
+                    <option value="+45">+45 Dinamarca</option>
+                    <option value="+421">+421 Eslovaquia</option>
+                    <option value="+386">+386 Eslovenia</option>
+                    <option value="+34">+34 España</option>
                     <option value="+372">+372 Estonia</option>
-                    <option value="+358">+358 Finland</option>
-                    <option value="+33">+33 France</option>
-                    <option value="+30">+30 Greece</option>
-                    <option value="+36">+36 Hungary</option>
-                    <option value="+353">+353 Ireland</option>
-                    <option value="+354">+354 Iceland</option>
-                    <option value="+39">+39 Italy</option>
-                    <option value="+371">+371 Latvia</option>
-                    <option value="+370">+370 Lithuania</option>
-                    <option value="+352">+352 Luxembourg</option>
-                    <option value="+47">+47 Norway</option>
-                    <option value="+31">+31 Netherlands</option>
-                    <option value="+48">+48 Poland</option>
+                    <option value="+358">+358 Finlandia</option>
+                    <option value="+33">+33 Francia</option>
+                    <option value="+30">+30 Grecia</option>
+                    <option value="+36">+36 Hungría</option>
+                    <option value="+353">+353 Irlanda</option>
+                    <option value="+354">+354 Islandia</option>
+                    <option value="+39">+39 Italia</option>
+                    <option value="+371">+371 Letonia</option>
+                    <option value="+370">+370 Lituania</option>
+                    <option value="+352">+352 Luxemburgo</option>
+                    <option value="+47">+47 Noruega</option>
+                    <option value="+31">+31 Países Bajos</option>
+                    <option value="+48">+48 Polonia</option>
                     <option value="+351">+351 Portugal</option>
-                    <option value="+44">+44 United Kingdom</option>
-                    <option value="+40">+40 Romania</option>
+                    <option value="+44">+44 Reino Unido</option>
+                    <option value="+40">+40 Rumania</option>
                     <option value="+381">+381 Serbia</option>
-                    <option value="+46">+46 Sweden</option>
-                    <option value="+41">+41 Switzerland</option>
-                    <option value="+420">+420 Czech Republic</option>
-                    <option value="+380">+380 Ukraine</option>
+                    <option value="+46">+46 Suecia</option>
+                    <option value="+41">+41 Suiza</option>
+                    <option value="+420">+420 Chequia</option>
+                    <option value="+380">+380 Ucrania</option>
                   </optgroup>
                   <optgroup label="Asia">
-                    <option value="+966">+966 Saudi Arabia</option>
-                    <option value="+971">+971 United Arab Emirates</option>
-                    <option value="+63">+63 Philippines</option>
+                    <option value="+966">+966 Arabia Saudita</option>
+                    <option value="+971">+971 Emiratos Árabes Unidos</option>
+                    <option value="+63">+63 Filipinas</option>
                     <option value="+852">+852 Hong Kong</option>
                     <option value="+91">+91 India</option>
                     <option value="+62">+62 Indonesia</option>
                     <option value="+972">+972 Israel</option>
-                    <option value="+81">+81 Japan</option>
-                    <option value="+60">+60 Malaysia</option>
-                    <option value="+92">+92 Pakistan</option>
+                    <option value="+81">+81 Japón</option>
+                    <option value="+60">+60 Malasia</option>
+                    <option value="+92">+92 Pakistán</option>
                     <option value="+86">+86 China</option>
-                    <option value="+65">+65 Singapore</option>
-                    <option value="+82">+82 South Korea</option>
-                    <option value="+66">+66 Thailand</option>
-                    <option value="+90">+90 Turkey</option>
+                    <option value="+65">+65 Singapur</option>
+                    <option value="+82">+82 Corea del Sur</option>
+                    <option value="+66">+66 Tailandia</option>
+                    <option value="+90">+90 Turquía</option>
                     <option value="+84">+84 Vietnam</option>
                   </optgroup>
-                  <optgroup label="Africa">
-                    <option value="+27">+27 South Africa</option>
-                    <option value="+20">+20 Egypt</option>
-                    <option value="+212">+212 Morocco</option>
+                  <optgroup label="África">
+                    <option value="+27">+27 Sudáfrica</option>
+                    <option value="+20">+20 Egipto</option>
+                    <option value="+212">+212 Marruecos</option>
                     <option value="+234">+234 Nigeria</option>
-                    <option value="+254">+254 Kenya</option>
-                    <option value="+251">+251 Ethiopia</option>
+                    <option value="+254">+254 Kenia</option>
+                    <option value="+251">+251 Etiopía</option>
                     <option value="+233">+233 Ghana</option>
                   </optgroup>
-                  <optgroup label="Oceania">
+                  <optgroup label="Oceanía">
                     <option value="+61">+61 Australia</option>
-                    <option value="+64">+64 New Zealand</option>
+                    <option value="+64">+64 Nueva Zelanda</option>
                   </optgroup>
                 </select>
                 <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="222 123 4567" />
@@ -2261,42 +2287,42 @@
               <div class="field">
                 <label for="sector">Sector</label>
                 <select id="sector" name="sector" required>
-                  <option value="">Select a sector</option>
-                  <option>Drones &amp; Inspection</option>
-                  <option>Logistics &amp; Warehouses</option>
-                  <option>Manufacturing &amp; Robotics</option>
-                  <option>Enterprise Operations</option>
-                  <option>Energy &amp; Infrastructure</option>
-                  <option>Research / Lab / Academia</option>
-                  <option>Government / Public Safety</option>
-                  <option>Other</option>
+                  <option value="">Selecciona un sector</option>
+                  <option>Drones e inspección</option>
+                  <option>Logística y almacenes</option>
+                  <option>Manufactura y robótica</option>
+                  <option>Operaciones empresariales</option>
+                  <option>Energía e infraestructura</option>
+                  <option>Investigación / laboratorio / academia</option>
+                  <option>Gobierno / seguridad pública</option>
+                  <option>Otro</option>
                 </select>
               </div>
 
               <div class="field">
-                <label for="interest">Interest</label>
+                <label for="interest">Interés</label>
                 <select id="interest" name="interest" required>
-                  <option value="">Select your interest</option>
-                  <option>Technical evaluation</option>
-                  <option>Controlled pilot</option>
-                  <option>SDK license</option>
-                  <option>Local server / on-premise</option>
-                  <option>Enterprise integration</option>
-                  <option>Autonomy for drones / UAV / UGV</option>
-                  <option>Operational automation / OP AI</option>
-                  <option>Partnership / investment</option>
-                  <option>Technical documentation under NDA</option>
-                  <option>Other</option>
+                  <option value="">Selecciona tu interés</option>
+                  <option>Evaluación técnica</option>
+                  <option>Piloto controlado</option>
+                  <option>Licencia SDK</option>
+                  <option>Servidor local / on-premise</option>
+                  <option>Integración empresarial</option>
+                  <option>Autonomía para drones / UAV / UGV</option>
+                  <option>Automatización operativa / OP AI</option>
+                  <option>Partnership / inversión</option>
+                  <option>Documentación técnica bajo NDA</option>
+                  <option>Otro</option>
                 </select>
               </div>
             </div>
 
             <div class="field">
-              <label for="message">Message</label>
+              <label for="message">Mensaje</label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="Share your use case, evaluation goal, current stage, and the type of technical access you need."
+                placeholder="Comparte tu caso de uso, objetivo de evaluación, etapa del proceso o el tipo de acceso técnico que necesitas."
                 required
               ></textarea>
             </div>
@@ -2304,14 +2330,14 @@
             <label class="privacy">
               <input type="checkbox" name="privacy" required />
               <span>
-                I have read and accept the <a href="privacy-en.html">privacy notice</a> and authorize
-                the processing of my personal data in accordance with the LFPDPPP.
+                He leído y acepto el <a href="privacy.html">aviso de privacidad</a> y autorizo
+                el tratamiento de mis datos personales conforme a la LFPDPPP.
               </span>
             </label>
 
             <div class="form-status" aria-live="polite"></div>
 
-            <button class="submit" type="submit">Request technical evaluation</button>
+            <button class="submit" type="submit">Solicitar evaluación técnica</button>
           </form>
         </div>
       </div>
@@ -2328,26 +2354,26 @@
         </div>
 
         <p>
-          A platform for verifiable autonomy across physical, digital, and enterprise systems.
+          Plataforma de autonomía verificable para sistemas físicos, digitales y empresariales.
         </p>
       </div>
 
       <div>
-        <div class="footer-title">Platform</div>
-        <a href="#solutions">Solutions</a>
-        <a href="#industries">Industries</a>
-        <a href="#evaluation">Evaluation</a>
-        <a href="#contact">Contact</a>
+        <div class="footer-title">Plataforma</div>
+        <a href="#solutions">Soluciones</a>
+        <a href="#industries">Industrias</a>
+        <a href="#evaluation">Evaluación</a>
+        <a href="#contact">Contacto</a>
       </div>
 
       <div>
-        <div class="footer-title">Technology</div>
-        <a href="technology-en.html">Architecture</a>
-        <a href="core-en.html">GEENESSYS 7.1.1.</a>
-        <a href="drones-en.html">GEENESSYS Drones</a>
-        <a href="op-ai-en.html">GEENESSYS OP AI</a>
-        <a href="dee-universe-en.html">DEE Universe</a>
-        <a href="privacy-en.html">Privacy notice</a>
+        <div class="footer-title">Tecnología</div>
+        <a href="technology.html">Arquitectura</a>
+        <a href="core.html">GEENESSYS 7.1.1.</a>
+        <a href="drones.html">GEENESSYS Drones</a>
+        <a href="op-ai.html">GEENESSYS OP AI</a>
+        <a href="dee-universe.html">DEE Universe</a>
+        <a href="privacy.html">Aviso de privacidad</a>
       </div>
     </div>
   </footer>
@@ -2362,6 +2388,8 @@
     const megaTrigger = document.querySelector('.mega-trigger');
     const megaMenu = document.getElementById('megaMenu');
     const megaBackdrop = document.querySelector('.mega-backdrop');
+    const supportsHoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let megaCloseTimer;
     let langScrollRestoreHandled = false;
     const LANG_RESTORE_PARAM_KEYS = ['langRestore', 'langY', 'langSectionId', 'langSectionOffset'];
 
@@ -2531,6 +2559,7 @@
 
     function closeMegaMenu() {
       if (!megaTrigger || !megaMenu || !megaBackdrop) return;
+      window.clearTimeout(megaCloseTimer);
       megaMenu.hidden = true;
       megaBackdrop.hidden = true;
       megaTrigger.setAttribute('aria-expanded', 'false');
@@ -2538,10 +2567,19 @@
 
     function openMegaMenu() {
       if (!megaTrigger || !megaMenu || !megaBackdrop) return;
+      window.clearTimeout(megaCloseTimer);
       closeMenu();
       megaMenu.hidden = false;
       megaBackdrop.hidden = false;
       megaTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function scheduleMegaMenuClose() {
+      if (!supportsHoverMenu.matches) return;
+      window.clearTimeout(megaCloseTimer);
+      megaCloseTimer = window.setTimeout(() => {
+        closeMegaMenu();
+      }, 180);
     }
 
     function closeMenu() {
@@ -2598,6 +2636,13 @@
         isOpen ? closeMegaMenu() : openMegaMenu();
       });
 
+      if (supportsHoverMenu.matches) {
+        megaTrigger.addEventListener('mouseenter', openMegaMenu);
+        megaTrigger.addEventListener('mouseleave', scheduleMegaMenuClose);
+        megaMenu.addEventListener('mouseenter', openMegaMenu);
+        megaMenu.addEventListener('mouseleave', scheduleMegaMenuClose);
+      }
+
       megaBackdrop.addEventListener('click', closeMegaMenu);
 
       megaMenu.querySelectorAll('a').forEach((link) => {
@@ -2620,7 +2665,7 @@
       if (!sideIndex || !sideIndexToggle) return;
       sideIndex.classList.toggle('collapsed', isCollapsed);
       sideIndexToggle.setAttribute('aria-expanded', String(!isCollapsed));
-      sideIndexToggle.setAttribute('aria-label', isCollapsed ? 'Show index' : 'Hide index');
+      sideIndexToggle.setAttribute('aria-label', isCollapsed ? 'Mostrar índice' : 'Ocultar índice');
       sideIndexToggle.textContent = isCollapsed ? '☰' : '×';
     }
 
@@ -2647,6 +2692,7 @@
     const industryTitle = document.getElementById('industry-title');
     const industryCopy = document.getElementById('industry-copy');
     const panelVisual = document.querySelector('.panel-visual');
+    const panelOverlay = document.querySelector('.panel-overlay');
 
     industryButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -2656,6 +2702,7 @@
         industryTitle.textContent = button.dataset.title;
         industryCopy.textContent = button.dataset.copy;
         panelVisual.dataset.visual = button.dataset.visual;
+        panelOverlay.dataset.visual = button.dataset.visual;
       });
     });
   </script>
@@ -2689,7 +2736,7 @@
         });
 
         if (button) {
-          button.textContent = "Sending...";
+          button.textContent = "Enviando...";
         }
 
         try {
@@ -2716,9 +2763,9 @@
           }
 
           form.reset();
-          setStatus("success", "Message sent successfully. We will respond within 24 to 48 business hours.");
+          setStatus("success", "Mensaje enviado correctamente. Responderemos dentro de 24 a 48 horas hábiles.");
         } catch (error) {
-          setStatus("error", "There was a problem sending your message. Please check that all required fields are complete or email us at info@geenessys.com.");
+          setStatus("error", "Hubo un problema al enviar tu mensaje. Revisa que todos los campos obligatorios estén completos o escríbenos a info@geenessys.com.");
         } finally {
           form.classList.remove("is-submitting");
           fields.forEach((field) => {
